@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: 5000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: image: gvnaressh/todo-backend:latest
+          env:
+            - name: DATABASE_URL
+              value: "postgresql://postgresql_user:GsDsXXIECaHl6oOiWNKMIPKIxGCkRpay@dpg-d178cbndiees73dtodng-a.oregon-postgres.render.com/postgresql_crud_db"
+          ports:
+            - containerPort: 5000

@@ -74,7 +74,7 @@ GITHUB:
 http://github.com/
 
 venkatdada369@gmail.com
-naressh369
+narresh369
 
 …or create a new repository on the command line
 
@@ -125,19 +125,19 @@ git remote add origin https://github.com/narresh369/todos.git
 git branch -M main
 git push -u origin main
 ----------------------------------------------------------------------------
+git add .
+git commit -m "IAdd updated files for full-stack todo app with Docker setup"
+git remote add origin https://github.com/narresh369/todos.git
+git branch -M main
+git push -u origin main
+
+
+
+
 ********
 
 E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git init
 Initialized empty Git repository in E:/MURALI/REACT-JS-TRAINING/ADDITIONAL-BACK-END/CICD-Basics-Docker-Kubernates-Jenkins/todoApp/.git/
-
-Microsoft Windows [Version 10.0.26100.4202]
-(c) Microsoft Corporation. All rights reserved.
-
-E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git init
-Initialized empty Git repository in E:/MURALI/REACT-JS-TRAINING/ADDITIONAL-BACK-END/CICD-Basics-Docker-Kubernates-Jenkins/todoApp/.git/
-
-E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
-E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>code .
 
 E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git add .
 warning: in the working copy of 'backend/package-lock.json', LF will be replaced by CRLF the next time Git touches it
@@ -156,8 +156,8 @@ warning: in the working copy of 'frontend/src/main.jsx', LF will be replaced by 
 warning: in the working copy of 'frontend/vite.config.js', LF will be replaced by CRLF the next time Git touches it
 
 E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git commit -m "Initial commit: Todo app with React and PostgreSQL backend"
-[master (root-commit) 0547062] Initial commit: Todo app with React and PostgreSQL backend
- 20 files changed, 5681 insertions(+)
+[master (root-commit) 758ddd0] Initial commit: Todo app with React and PostgreSQL backend
+ 20 files changed, 5760 insertions(+)
  create mode 100644 .gitignore
  create mode 100644 SCREENS/STEPS.txt
  create mode 100644 backend/index.js
@@ -178,6 +178,22 @@ E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Je
  create mode 100644 frontend/src/index.css
  create mode 100644 frontend/src/main.jsx
  create mode 100644 frontend/vite.config.js
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git remote add origin https://github.com/narresh369/todos.git
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git branch -M main
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git push -u origin main
+Enumerating objects: 28, done.
+Counting objects: 100% (28/28), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (23/23), done.
+Writing objects: 100% (28/28), 50.67 KiB | 4.22 MiB/s, done.
+Total 28 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), done.
+To https://github.com/narresh369/todos.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
 
 E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
 
@@ -226,3 +242,79 @@ added 154 packages, and audited 155 packages in 17s
 found 0 vulnerabilities
 
 E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend>npm run dev
+
+===================================================================================
+
+
+postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgresql_user
+      POSTGRES_PASSWORD: GsDsXXIECaHl6oOiWNKMIPKIxGCkRpay
+      POSTGRES_DB: postgresql_crud_db
+	  
+	  
+	  
+	  todo-app-deploy/
+├── client/
+│   ├── Dockerfile
+│   └── ...
+├── server/
+│   ├── Dockerfile
+│   └── ...
+├── docker-compose.yml
+├── Jenkinsfile
+└── README.md
+
+	  
+Create a Docker Hub Account 	  
+	  
+google gmail signup
+gvnaressh@gmail.com	  
+username : gvnaressh	  
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\k8s\backend-deployment.yaml
+image: your-dockerhub-username/todo-backend:latest
+image: gvnaressh/todo-backend:latest
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\k8s\frontend-deployment.yaml
+image: your-dockerhub-username/todo-frontend:latest
+image: gvnaressh/todo-frontend:latest
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\k8s\postgres-deployment.yaml	  
+ env:
+	- name: POSTGRES_DB
+	  value: "tododb"
+	- name: POSTGRES_USER
+	  value: "postgres"
+	- name: POSTGRES_PASSWORD
+	  value: "yourpassword"	  
+
+
+ env:
+	- name: POSTGRES_DB
+	  value: "postgresql_crud_db"
+	- name: POSTGRES_USER
+	  value: "postgresql_user"
+	- name: POSTGRES_PASSWORD
+	  value: "GsDsXXIECaHl6oOiWNKMIPKIxGCkRpay"	
+
+
+	  
+	  
+
+POSTGRESQL - REMOTE
+narresh.gudimetlaa@gmail.com
+Gvnaressh3695
+https://dashboard.render.com/
+NAME:crud-postgresql
+DATABASE:postgresql_crud_db
+USER:crud-postgresql_user
+INTERNAL DATABASE URL
+postgresql://postgresql_user:GsDsXXIECaHl6oOiWNKMIPKIxGCkRpay@dpg-d178cbndiees73dtodng-a/postgresql_crud_db
+EXTERNAL DATABASE URL[USE THIS]
+postgresql://postgresql_user:GsDsXXIECaHl6oOiWNKMIPKIxGCkRpay@dpg-d178cbndiees73dtodng-a.oregon-postgres.render.com/postgresql_crud_db
+
+
+	  
