@@ -1,0 +1,228 @@
+8.CI/CD Basics Docker , Kubernates , Jenkins - just basics underneath how the
+  deployment works
+  E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp
+
+FRONTEND:
+========
+  
+  FOLLOW SETTINGS FROM TAILWIND VITE TAB
+https://tailwindcss.com/docs/installation/using-vite
+npm install tailwindcss @tailwindcss/vite
+
+npm create vite@latest frontend -- --template react
+
+npm run dev
+
+  VITE v7.0.0  ready in 850 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+
+
+
+npm install tailwindcss @tailwindcss/vite
+npm install axios
+
+
+BACKEND:
+========
+npm init -y
+in package.json add "type":"module"
+
+npm install express pg cors bcryptjs jsonwebtoken dotenv
+npm install express cors dotenv pg
+npm install dotenv
+
+npm install --save-dev nodemon
+
+"start": "node index.js",
+"dev": "nodemon index.js",
+
+
+
+PORT=5000
+DATABASE_URL=postgresql://postgresql_user:GsDsXXIECaHl6oOiWNKMIPKIxGCkRpay@dpg-d178cbndiees73dtodng-a.oregon-postgres.render.com/postgresql_crud_db
+JWT_SECRET=a04b799600ad8fa1a0d043566e6d85f23d7506a7
+
+
+
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\backend>npm run dev
+
+> backend@1.0.0 dev
+> nodemon index.js
+
+[nodemon] 3.1.10
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node index.js`
+✅ Server running at http://localhost:5000
+
+
+TODOS TABLE:
+===========
+ CREATE TABLE IF NOT EXISTS todos (
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    completed BOOLEAN DEFAULT false
+  )
+
+GITHUB:
+=======
+http://github.com/
+
+venkatdada369@gmail.com
+naressh369
+
+…or create a new repository on the command line
+
+echo "# todos" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/narresh369/todos.git
+git push -u origin main
+
+…or push an existing repository from the command line
+
+git remote add origin https://github.com/narresh369/todos.git
+git branch -M main
+git push -u origin main
+
+
+********
+1.1. Initialize Git (if not already)
+git init
+
+1.2. Create .gitignore
+Make sure to add common things to ignore:
+node_modules/
+.env
+dist/
+
+
+1.3. Stage and commit:
+git add .
+git commit -m "Initial commit: Todo app with React and PostgreSQL backend"
+
+1.4. Create a GitHub repository
+Go to https://github.com → create a new repo (e.g., todo-app-deploy)
+
+1.5. Link and push:
+git remote add origin https://github.com/yourusername/todo-app-deploy.git
+git remote add origin https://github.com/narresh369/todos.git
+git branch -M main
+git push -u origin main
+
+----------------------------------------------------------------------------
+git init
+git add .
+git commit -m "Initial commit: Todo app with React and PostgreSQL backend"
+git remote add origin https://github.com/narresh369/todos.git
+git branch -M main
+git push -u origin main
+----------------------------------------------------------------------------
+********
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git init
+Initialized empty Git repository in E:/MURALI/REACT-JS-TRAINING/ADDITIONAL-BACK-END/CICD-Basics-Docker-Kubernates-Jenkins/todoApp/.git/
+
+Microsoft Windows [Version 10.0.26100.4202]
+(c) Microsoft Corporation. All rights reserved.
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git init
+Initialized empty Git repository in E:/MURALI/REACT-JS-TRAINING/ADDITIONAL-BACK-END/CICD-Basics-Docker-Kubernates-Jenkins/todoApp/.git/
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>code .
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git add .
+warning: in the working copy of 'backend/package-lock.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'frontend/.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'frontend/README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'frontend/eslint.config.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'frontend/index.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'frontend/package-lock.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'frontend/package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'frontend/src/App copy.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'frontend/src/App.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'frontend/src/App.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'frontend/src/index copy.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'frontend/src/main.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'frontend/vite.config.js', LF will be replaced by CRLF the next time Git touches it
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git commit -m "Initial commit: Todo app with React and PostgreSQL backend"
+[master (root-commit) 0547062] Initial commit: Todo app with React and PostgreSQL backend
+ 20 files changed, 5681 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 SCREENS/STEPS.txt
+ create mode 100644 backend/index.js
+ create mode 100644 backend/package-lock.json
+ create mode 100644 backend/package.json
+ create mode 100644 frontend/.gitignore
+ create mode 100644 frontend/README.md
+ create mode 100644 frontend/eslint.config.js
+ create mode 100644 frontend/index.html
+ create mode 100644 frontend/package-lock.json
+ create mode 100644 frontend/package.json
+ create mode 100644 frontend/public/vite.svg
+ create mode 100644 frontend/src/App copy.jsx
+ create mode 100644 frontend/src/App.css
+ create mode 100644 frontend/src/App.jsx
+ create mode 100644 frontend/src/assets/react.svg
+ create mode 100644 frontend/src/index copy.css
+ create mode 100644 frontend/src/index.css
+ create mode 100644 frontend/src/main.jsx
+ create mode 100644 frontend/vite.config.js
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
+
+===============================================================================================================
+Microsoft Windows [Version 10.0.26100.4202]
+(c) Microsoft Corporation. All rights reserved.
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>npm create vite@latest frontend -- --template react
+Need to install the following packages:
+create-vite@7.0.0
+Ok to proceed? (y) y
+
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: 'create-vite@7.0.0',
+npm warn EBADENGINE   required: { node: '^20.19.0 || >=22.12.0' },
+npm warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.0' }
+npm warn EBADENGINE }
+
+> npx
+> create-vite frontend --template react
+
+|
+o  Scaffolding project in E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend...
+|
+—  Done. Now run:
+
+  cd frontend
+  npm install
+  npm run dev
+
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp> cd frontend
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend>  npm install
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: 'vite@7.0.0',
+npm warn EBADENGINE   required: { node: '^20.19.0 || >=22.12.0' },
+npm warn EBADENGINE   current: { node: 'v20.13.1', npm: '10.9.0' }
+npm warn EBADENGINE }
+
+added 154 packages, and audited 155 packages in 17s
+
+33 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend>npm run dev
