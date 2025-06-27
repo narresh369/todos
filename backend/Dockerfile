@@ -8,7 +8,9 @@ WORKDIR /
 COPY package*.json ./
 
 # Clean cache (optional but helpful in some cases) and install dependencies
-RUN npm cache clean --force && npm install
+#RUN npm cache clean --force && npm install
+# Clean previous lock files or node_modules if present
+RUN rm -rf node_modules package-lock.json && npm install
 
 # Copy the rest of the application
 COPY . .
