@@ -2,7 +2,7 @@
 FROM node:18-alpine
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /
 
 # Copy only package files (for better layer caching)
 COPY package*.json ./
