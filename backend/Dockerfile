@@ -1,13 +1,20 @@
-# server/Dockerfile
+# Use a Node.js base image
 FROM node:18-alpine
 
-WORKDIR /
+# Set the working directory in the container
+WORKDIR /app
 
+# Copy only package files (for better layer caching)
 COPY package*.json ./
-RUN npm install
 
+# Clean cache (optional but helpful in some cases) and install dependencies
+RUN npm cache clean --force && npm install
+
+# Copy the rest of the application
 COPY . .
 
+# Expose your server port
 EXPOSE 5000
 
+# Run the server
 CMD ["node", "index.js"]
