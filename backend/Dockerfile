@@ -1,7 +1,7 @@
 # server/Dockerfile
 FROM node:18-alpine
 
-WORKDIR /backend
+WORKDIR /
 
 COPY package*.json ./
 RUN npm install
