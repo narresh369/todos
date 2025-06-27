@@ -125,11 +125,17 @@ git remote add origin https://github.com/narresh369/todos.git
 git branch -M main
 git push -u origin main
 ----------------------------------------------------------------------------
+PUSH NEW FILES TO GITHUB:
+=========================
 git add .
-git commit -m "IAdd updated files for full-stack todo app with Docker setup"
+git commit -m "Updated files Edited Dockerfile"
 git remote add origin https://github.com/narresh369/todos.git
 git branch -M main
 git push -u origin main
+
+
+
+
 
 
 
@@ -318,3 +324,42 @@ postgresql://postgresql_user:GsDsXXIECaHl6oOiWNKMIPKIxGCkRpay@dpg-d178cbndiees73
 
 
 	  
+	  
+	  
+	  
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>docker
+'docker' is not recognized as an internal or external command,
+operable program or batch file.
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git add .
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git commit -m "IAdd updated files for full-stack todo app with Docker setup"
+[main 8c13841] IAdd updated files for full-stack todo app with Docker setup
+ 9 files changed, 298 insertions(+), 12 deletions(-)
+ create mode 100644 backend/Dockerfile
+ create mode 100644 frontend/Dockerfile
+ create mode 100644 frontend/Jenkinsfile
+ create mode 100644 frontend/docker-compose.yml
+ create mode 100644 k8s/backend-deployment.yaml
+ create mode 100644 k8s/frontend-deployment.yaml
+ create mode 100644 k8s/postgres-deployment.yaml
+ create mode 100644 k8s/postgres-pvc.yaml
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git remote add origin https://github.com/narresh369/todos.git
+error: remote origin already exists.
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git branch -M main
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git push -u origin main
+Enumerating objects: 20, done.
+Counting objects: 100% (20/20), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (14/14), done.
+Writing objects: 100% (15/15), 3.39 KiB | 173.00 KiB/s, done.
+Total 15 (delta 5), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (5/5), completed with 3 local objects.
+To https://github.com/narresh369/todos.git
+   758ddd0..8c13841  main -> main
+branch 'main' set up to track 'origin/main'.
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
