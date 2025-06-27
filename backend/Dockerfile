@@ -1,13 +1,13 @@
+# backend/Dockerfile
 FROM node:18-alpine
 
-WORKDIR /
+WORKDIR /app
 
-# Go up one directory to get package.json from root
-COPY ../package*.json ./
+COPY package*.json ./
 
 RUN npm install
 
-COPY ../ ./
+COPY . .
 
 EXPOSE 5000
 
