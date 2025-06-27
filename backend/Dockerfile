@@ -7,7 +7,7 @@ WORKDIR /
 COPY package*.json ./
 
 # Clean npm cache and use safe install mode
-RUN rm -rf /root/.npm /app/node_modules && \
+RUN rm -rf /root/.npm /node_modules && \
     npm cache clean --force && \
     npm install --omit=dev --legacy-peer-deps
 
