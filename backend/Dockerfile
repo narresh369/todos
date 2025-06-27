@@ -1,13 +1,13 @@
 FROM node:18-alpine
 
-WORKDIR /app
+WORKDIR /
 
 # Go up one directory to get package.json from root
-COPY ../package*.json ./app
+COPY ../package*.json ./
 
 RUN npm install
 
-COPY ../ ./app
+COPY ../ ./
 
 EXPOSE 5000
 
