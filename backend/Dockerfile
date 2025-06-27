@@ -1,11 +1,17 @@
 FROM node:18-alpine
 
-WORKDIR /
+# Set working directory
+WORKDIR /app
 
+# Clean and copy only necessary files first
 COPY package*.json ./
 
-RUN npm install
+# Clean npm cache and use safe install mode
+RUN rm -rf /root/.npm /app/node_modules && \
+    npm cache clean --force && \
+    npm install --omit=dev --legacy-peer-deps
 
+# Now copy rest of the app
 COPY . .
 
 EXPOSE 5000
