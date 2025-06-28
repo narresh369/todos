@@ -1,14 +1,22 @@
 # backend/Dockerfile
 FROM node:18-alpine
 
-WORKDIR /
+# Set working directory
+WORKDIR /app
 
-#COPY package*.json ./
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
-RUN npm install
+# Clean npm cache and install dependencies
+RUN rm -rf /root/.npm /app/node_modules && \
+    npm cache clean --force && \
+    npm install --legacy-peer-deps
 
+# Copy the rest of the code
 COPY . .
 
+# Expose port
 EXPOSE 5000
 
+# Run app
 CMD ["node", "index.js"]
