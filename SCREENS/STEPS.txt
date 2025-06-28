@@ -141,6 +141,7 @@ npm cache clean --force
 npm install
 
 
+tree "E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\backend" /f /a
 
 
 ********
@@ -364,5 +365,55 @@ remote: Resolving deltas: 100% (5/5), completed with 3 local objects.
 To https://github.com/narresh369/todos.git
    758ddd0..8c13841  main -> main
 branch 'main' set up to track 'origin/main'.
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
+
+
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>tree "E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp" /f /a | findstr /v /i "node_modules .git dist public SCREENS .bin .vite .vite-temp .@ampproject @babel core vite tar tapable tailwindcss"
+Folder PATH listing for volume DATA
+Volume serial number is 0ED0-D3D0
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-BASICS-DOCKER-KUBERNATES-JENKINS\TODOAPP
+|   docker-compose.yml
+|
++---backend
+|       .dockerignore
+|       .env
+|       Dockerfile
+|       index.js
+|       package.json
+|
++---frontend
+|   |   Dockerfile
+|   |   eslint.config.js
+|   |   index.html
+|   |   Jenkinsfile
+|   |   package-lock.json
+|   |   package.json
+|   |   README.md
+|   |
+|   |   |   .package-lock.json
+|   |   |
+|   |
+|   |
+|   \---src
+|       |   App copy.jsx
+|       |   App.css
+|       |   App.jsx
+|       |   index copy.css
+|       |   index.css
+|       |   main.jsx
+|       |
+|       \---assets
+|               react.svg
+|
++---k8s
+|       backend-deployment.yaml
+|       frontend-deployment.yaml
+|       postgres-deployment.yaml
+|       postgres-pvc.yaml
+|
+        STEPS.txt
+
 
 E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
