@@ -1,4 +1,4 @@
-# client/Dockerfile
+# frontend/Dockerfile
 FROM node:18-alpine
 
 WORKDIR /app
@@ -10,6 +10,8 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 5173
+# Serve with static server
+RUN npm install -g serve
 
-CMD ["npm", "run", "dev"]
+EXPOSE 3000
+CMD ["serve", "-s", "dist"]

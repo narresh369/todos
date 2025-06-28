@@ -1,26 +1,24 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const API_BASE = import.meta.env.VITE_API_URL;
-
 function App() {
   const [todos, setTodos] = useState([]);
   const [title, setTitle] = useState('');
 
   const fetchTodos = async () => {
-    const res = await axios.get(`${API_BASE}/api/todos`);
+    const res = await axios.get('http://localhost:5000/api/todos');
     setTodos(res.data);
   };
 
   const addTodo = async () => {
     if (title.trim() === '') return;
-    await axios.post(`${API_BASE}/api/todos`, { title });
+    await axios.post('http://localhost:5000/api/todos', { title });
     setTitle('');
     fetchTodos();
   };
 
   const toggleComplete = async (todo) => {
-    await axios.put(`${API_BASE}/api/todos/${todo.id}`, {
+    await axios.put(`http://localhost:5000/api/todos/${todo.id}`, {
       ...todo,
       completed: !todo.completed
     });
@@ -28,7 +26,7 @@ function App() {
   };
 
   const deleteTodo = async (id) => {
-    await axios.delete(`${API_BASE}/api/todos/${id}`);
+    await axios.delete(`http://localhost:5000/api/todos/${id}`);
     fetchTodos();
   };
 

@@ -117,7 +117,7 @@ git remote add origin https://github.com/narresh369/todos.git
 git branch -M main
 git push -u origin main
 
-----------------------------------------------------------------------------
+-------------------------------- RUN THIS FROM ROOT OF APPLICATION--------------------------------------------
 git init
 git add .
 git commit -m "Initial commit: Todo app with React and PostgreSQL backend"
@@ -143,6 +143,31 @@ npm install
 
 tree "E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\backend" /f /a
 
+
+RENDER:[ TO DEPLOY BACKEND ]
+======
+
+
+https://todos-31gl.onrender.com/api/todos
+[{"id":3,"title":"go to school and pay fee","completed":false},{"id":2,"title":"get milk and corn","completed":true}]
+
+
+https://todos-31gl.onrender.com/api/todos
+
+
+
+VERCEL:[ TO DEPLOY FRONTEND ]
+======
+https://vercel.com/narresh369s-projects
+
+npm install vite@^6
+
+
+git init
+git remote add origin https://github.com/narresh369/todos.git
+git add .
+git commit -m "Initial commit"
+git push -u origin main
 
 ********
 
