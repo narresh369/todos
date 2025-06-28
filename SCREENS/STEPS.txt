@@ -171,8 +171,33 @@ git push -u origin main
 
 
 npm install -D autoprefixer
+npm install -D @tailwindcss/postcss
 
 
+
+WITHOUT TAILWIND:
+=================
+npm create vite@latest frontend -- --template react
+
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>npm create vite@latest frontend -- --template react
+
+> npx
+> create-vite frontend --template react
+
+|
+o  Scaffolding project in E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend...
+|
+—  Done. Now run:
+
+  cd frontend
+  npm install
+  npm run dev
+
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
+
+npm install axios
 ********
 
 E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git init
