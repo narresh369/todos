@@ -169,6 +169,10 @@ git add .
 git commit -m "Initial commit"
 git push -u origin main
 
+
+npm install -D autoprefixer
+
+
 ********
 
 E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git init
