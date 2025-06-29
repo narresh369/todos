@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: image: gvnaressh/todo-backend:latest
+          image: gvnaressh/todo-backend:latest
           env:
             - name: DATABASE_URL
               value: "postgresql://postgresql_user:GsDsXXIECaHl6oOiWNKMIPKIxGCkRpay@dpg-d178cbndiees73dtodng-a.oregon-postgres.render.com/postgresql_crud_db"

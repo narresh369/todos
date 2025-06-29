@@ -188,6 +188,204 @@ exit
 
 
 
+PUSH NEW FILES TO GITHUB:
+=========================
+git add .
+git commit -m "Updated files Edited Dockerfile with ignore file"
+git remote add origin https://github.com/narresh369/todos.git
+git branch -M main
+git push -u origin main
+
+
+
+
+Alternate (Quick Test Way): Use Inline Script
+If you still want to use a regular pipeline job, do the following:
+
+Create a "Pipeline" Job
+
+In the configuration:
+
+Choose Pipeline script (not "from SCM")
+
+Paste this minimal working example:
+
+
+pipeline {
+  agent any
+  stages {
+    stage('Clone') {
+      steps {
+        git branch: 'main', url: 'https://github.com/narresh369/todos.git'
+      }
+    }
+    stage('Echo') {
+      steps {
+        echo '✅ Successfully cloned and ran pipeline'
+      }
+    }
+  }
+}
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ STEP 1: Validate Your Setup
+Make sure the following work inside Jenkins:
+
+🔹 A. Check Docker CLI inside Jenkins
+In Jenkins, go to:
+
+Dashboard → Manage Jenkins → Script Console, run:
+
+def proc = 'docker --version'.execute()
+proc.waitFor()
+println proc.text
+
+Docker version 20.10.24+dfsg1, build 297e128
+
+
+STEP 2: Test Docker Build Manually in Jenkins Shell
+1. Open Jenkins container shell (from your terminal):
+
+docker exec -it jenkins bash
+
+2. Then run:
+cd /var/jenkins_home/workspace/todos-pipeline/backend
+docker build -t gvnaressh/todo-backend:latest .
+
+This should build your Docker image successfully.
+
+------------------
+root@3115de01f386:/# cd /var/jenkins_home/workspace/todos-pipeline/backend
+docker build -t gvnaressh/todo-backend:latest .
+[+] Building 207.4s (10/10) FINISHED
+ => [internal] load build definition from Dockerfile                                                               2.0s
+ => => transferring dockerfile: 196B                                                                               0.5s
+ => [internal] load metadata for docker.io/library/node:18-alpine                                                  8.8s
+ => [internal] load .dockerignore                                                                                  0.1s
+ => => transferring context: 92B                                                                                   0.0s
+ => [1/5] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8c  0.2s
+ => => resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8c  0.3s
+ => => sha256:1e5a4c89cee5c0826c540ab06d4b6b491c96eda01837f430bd47f0d26702d6e3 1.26MB / 1.26MB                     2.7s
+ => => sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 3.64MB / 3.64MB                    19.9s
+ => => sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e 40.01MB / 40.01MB                  55.6s
+ => => sha256:25ff2da83641908f65c3a74d80409d6b1b62ccfaab220b9ea70b80df5a2e0549 446B / 446B                         1.0s
+ => => extracting sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870                          6.5s
+ => => extracting sha256:dd71dde834b5c203d162902e6b8994cb2309ae049a0eabc4efea161b2b5a3d0e                         47.9s
+ => => extracting sha256:1e5a4c89cee5c0826c540ab06d4b6b491c96eda01837f430bd47f0d26702d6e3                          3.1s
+ => => extracting sha256:25ff2da83641908f65c3a74d80409d6b1b62ccfaab220b9ea70b80df5a2e0549                          0.2s
+ => [internal] load build context                                                                                  0.2s
+ => => transferring context: 3.68kB                                                                                0.1s
+ => [2/5] WORKDIR /app                                                                                             0.7s
+ => [3/5] COPY package*.json ./                                                                                    0.2s
+ => [4/5] RUN npm install --legacy-peer-deps                                                                      77.5s
+ => [5/5] COPY . .                                                                                                 0.2s
+ => exporting to image                                                                                             8.1s
+ => => exporting layers                                                                                            4.1s
+ => => exporting manifest sha256:46a29275a765e77704435c0f9e23ad59c9280205f31ee246a8146baf113e3ab1                  0.0s
+ => => exporting config sha256:19a7ac42ae86767e6ac00e0c2af769706f45cb3a0243105c9850a4beb64e2e5a                    0.0s
+ => => naming to docker.io/gvnaressh/todo-backend:latest                                                           0.0s
+ => => unpacking to docker.io/gvnaressh/todo-backend:latest                                                        3.7s
+root@3115de01f386:/var/jenkins_home/workspace/todos-pipeline/backend#
+
+------------------
+
+
+
+STEP 3: Push Docker Image to DockerHub
+
+Still inside Jenkins container shell:
+
+docker login -u gvnaressh
+# Enter your Docker Hub password
+
+docker login -u gvnaressh
+Uzwall12578*
+
+docker push gvnaressh/todo-backend:latest
+
+
+docker login -u gvnaressh
+# Enter your Docker Hub password
+
+docker push gvnaressh/todo-backend:latest
+
+ENTER DOCKERHUB PASSWORD AGAIN:Uzwall12578*
+-------------------------
+root@3115de01f386:/var/jenkins_home/workspace/todos-pipeline/backend# docker login -u gvnaressh
+# Enter your Docker Hub password
+
+docker push gvnaressh/todo-backend:latest
+Password:
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+The push refers to repository [docker.io/gvnaressh/todo-backend]
+836054549873: Pushed
+1e5a4c89cee5: Pushed
+5d63d71c5559: Pushed
+8e7acf881ca7: Pushed
+f18232174bc9: Pushed
+25ff2da83641: Pushed
+dd71dde834b5: Pushed
+6738646e37ca: Pushed
+latest: digest: sha256:46a29275a765e77704435c0f9e23ad59c9280205f31ee246a8146baf113e3ab1 size: 1874
+root@3115de01f386:/var/jenkins_home/workspace/todos-pipeline/backend#
+-------------------------
+
+
+ This should push the image to your Docker Hub account:
+👉 https://hub.docker.com/repository/docker/gvnaressh/todo-backend
+
+
+
+ STEP 4: Apply K8s Deployment (Minikube)
+Make sure Minikube is running:
+
+
+minikube start
+
+-----------------------
+Microsoft Windows [Version 10.0.26100.4202]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Naresh>minikube start
+* minikube v1.36.0 on Microsoft Windows 11 Home Single Language 10.0.26100.4202 Build 26100.4202
+* Using the docker driver based on existing profile
+* Starting "minikube" primary control-plane node in "minikube" cluster
+* Pulling base image v0.0.47 ...
+* Updating the running docker "minikube" container ...
+! Failing to connect to https://registry.k8s.io/ from both inside the minikube container and host machine
+* To pull new external images, you may need to configure a proxy: https://minikube.sigs.k8s.io/docs/reference/networking/proxy/
+* Preparing Kubernetes v1.33.1 on Docker 28.1.1 ...
+* Verifying Kubernetes components...
+  - Using image gcr.io/k8s-minikube/storage-provisioner:v5
+* Enabled addons: storage-provisioner, default-storageclass
+* Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+
+-----------------------
+
+kubectl apply -f k8s/postgres-deployment.yaml
+kubectl apply -f k8s/postgres-pvc.yaml
+kubectl apply -f k8s/backend-deployment.yaml
+
+
+Check pods:
+
+kubectl get pods
+
+You should see your backend and Postgres pods running.
+
+STEP 5: Finalize Jenkins Pipeline
+Now that the manual steps work:
+
+Update your Jenkinsfile to include the full automation (as shown earlier).
+
+Run the pipeline from Jenkins → "Build Now".
+
+
+
 
 BACKEND DEPLOYED IN RENDER.COM
 https://todos-31gl.onrender.com/
