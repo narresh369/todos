@@ -3,13 +3,10 @@ kind: Service
 metadata:
   name: backend-service
 spec:
-  type: NodePort  # <-- Add this line
   selector:
     app: backend
   ports:
     - port: 5000
-      targetPort: 5000
-      nodePort: 30007  # <-- Optional: you can let Kubernetes choose or set manually (range: 30000-32767)
 ---
 apiVersion: apps/v1
 kind: Deployment

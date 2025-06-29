@@ -369,13 +369,65 @@ C:\Users\Naresh>minikube start
 kubectl apply -f k8s/postgres-deployment.yaml
 kubectl apply -f k8s/postgres-pvc.yaml
 kubectl apply -f k8s/backend-deployment.yaml
+---------------------------
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl apply -f k8s/postgres-pvc.yaml
+persistentvolumeclaim/postgres-pvc created
 
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl apply -f k8s/postgres-deployment.yaml
+service/postgres-service created
+deployment.apps/postgres created
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl apply -f k8s/backend-deployment.yaml
+service/backend-service created
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl apply -f k8s/backend-deployment.yaml
+service/backend-service unchanged
+deployment.apps/backend unchanged
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
+---------------------------
 
 Check pods:
 
 kubectl get pods
 
+------------------
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl get pods
+NAME                        READY   STATUS              RESTARTS   AGE
+backend-6845f99c98-6zwkn    0/1     ContainerCreating   0          100s
+postgres-5464b79444-kvxc6   1/1     Running             0          5m7s
+
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+backend-6845f99c98-6zwkn    1/1     Running   0          2m9s
+postgres-5464b79444-kvxc6   1/1     Running   0          5m36s
+------------------
+
 You should see your backend and Postgres pods running.
+
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl get services
+NAME               TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+backend-service    ClusterIP   10.102.153.180   <none>        5000/TCP   6m33s
+kubernetes         ClusterIP   10.96.0.1        <none>        443/TCP    123m
+postgres-service   ClusterIP   10.103.80.189    <none>        5432/TCP   6m38s
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
+
+To Access the Backend Locally for Testing
+Run this command to port-forward your backend service to your local machine:
+kubectl port-forward service/backend-service 5000:5000
+
+http://localhost:5000/api/todos
+[{"id":5,"title":"test","completed":false},{"id":4,"title":"hello render","completed":true},{"id":3,"title":"go to school and pay fee","completed":false},{"id":2,"title":"get milk and corn","completed":true}]
+
+
+C:\Users\Naresh>minikube ip
+192.168.49.2
+
+C:\Users\Naresh>
+
+
 
 STEP 5: Finalize Jenkins Pipeline
 Now that the manual steps work:
