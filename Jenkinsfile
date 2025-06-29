@@ -8,6 +8,11 @@ pipeline {
 
   stages {
     stage('Build Docker Image') {
+      agent {
+        docker {
+          image 'node:18'
+        }
+      }
       steps {
         dir('backend') {
           sh 'npm install'
