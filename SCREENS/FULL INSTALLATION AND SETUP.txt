@@ -518,9 +518,175 @@ docker push your-dockerhub-username/todo-frontend:latest
 docker build -t gvnaressh/todo-frontend:latest .
 docker push gvnaressh/todo-frontend:latest
 
+--------------------------------------------
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend>dir
+ Volume in drive E is DATA
+ Volume Serial Number is 0ED0-D3D0
+
+ Directory of E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend
+
+29-06-2025  14:23    <DIR>          .
+29-06-2025  13:38    <DIR>          ..
+29-06-2025  14:14                84 .env
+26-06-2025  12:59               253 .gitignore
+29-06-2025  14:23               288 Dockerfile
+29-06-2025  11:16               153 Dockerfile copy
+26-06-2025  12:59               763 eslint.config.js
+26-06-2025  12:59               361 index.html
+29-06-2025  14:18    <DIR>          node_modules
+28-06-2025  12:33               628 package copy.json
+28-06-2025  12:41           106,002 package-lock.json
+28-06-2025  12:38               627 package.json
+28-06-2025  12:30    <DIR>          public
+26-06-2025  12:59               856 README.md
+28-06-2025  12:32    <DIR>          src
+26-06-2025  12:59               161 vite.config.js
+              11 File(s)        110,176 bytes
+               5 Dir(s)  295,195,701,248 bytes free
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend>docker build -t gvnaressh/todo-frontend:latest .
+[+] Building 659.0s (14/14) FINISHED                                                               docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.2s
+ => => transferring dockerfile: 327B                                                                               0.2s
+ => [internal] load metadata for docker.io/library/node:18-alpine                                                  4.1s
+ => [internal] load metadata for docker.io/library/nginx:stable-alpine                                             6.3s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [builder 1/6] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35c  0.3s
+ => => resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8c  0.2s
+ => [internal] load build context                                                                                241.0s
+ => => transferring context: 58.48MB                                                                             240.4s
+ => [stage-1 1/2] FROM docker.io/library/nginx:stable-alpine@sha256:aed99734248e851764f1f2146835ecad42b5f994081  156.6s
+ => => resolve docker.io/library/nginx:stable-alpine@sha256:aed99734248e851764f1f2146835ecad42b5f994081fa6631cc5d  0.2s
+ => => sha256:dde65f7af9d6bd24c25436572f04a4590e1d24cc3261e490b4dc04f8ddc95f55 1.79MB / 1.79MB                    21.0s
+ => => sha256:bbdf43ac95df903e0e0aba895e4fde36b9994a02e21e6f9ee01a90b874330b2b 955B / 955B                       650.0s
+ => => sha256:e57f9eaa9ba5fcc77182b2bac87e8ff12915363b7f083eb096744ac3c762a138 15.52MB / 15.52MB                  90.2s
+ => => sha256:19f9a172b25c0bb4945785ec1043c39f16f4af6efc5f40b0000ef423c84c1a1d 1.40kB / 1.40kB                    11.7s
+ => => sha256:c544760e65143e93084253d9559bde21e5b5ed47cec5db7ffce3cf52c6c1ea4d 404B / 404B                       644.7s
+ => => sha256:532a231453496d98bd24f9d17442565e55a30c355843a7106ca30d455828ab0c 628B / 628B                       633.1s
+ => => sha256:3cc2eb67bce91b1eacb09e48d14caba02f056ba09772b34f083b54b7b369cc8c 1.21kB / 1.21kB                    13.0s
+ => => extracting sha256:dde65f7af9d6bd24c25436572f04a4590e1d24cc3261e490b4dc04f8ddc95f55                         41.4s
+ => => extracting sha256:532a231453496d98bd24f9d17442565e55a30c355843a7106ca30d455828ab0c                          1.0s
+ => => extracting sha256:bbdf43ac95df903e0e0aba895e4fde36b9994a02e21e6f9ee01a90b874330b2b                          0.7s
+ => => extracting sha256:c544760e65143e93084253d9559bde21e5b5ed47cec5db7ffce3cf52c6c1ea4d                          1.8s
+ => => extracting sha256:3cc2eb67bce91b1eacb09e48d14caba02f056ba09772b34f083b54b7b369cc8c                          6.1s
+ => => extracting sha256:19f9a172b25c0bb4945785ec1043c39f16f4af6efc5f40b0000ef423c84c1a1d                          2.7s
+ => => extracting sha256:e57f9eaa9ba5fcc77182b2bac87e8ff12915363b7f083eb096744ac3c762a138                         64.4s
+ => CACHED [builder 2/6] WORKDIR /app                                                                              0.1s
+ => [builder 3/6] COPY package*.json ./                                                                            4.9s
+ => [builder 4/6] RUN npm install                                                                                271.5s
+ => [builder 5/6] COPY . .                                                                                        12.1s
+ => [builder 6/6] RUN npm run build                                                                              117.0s
+ => [stage-1 2/2] COPY --from=builder /app/dist /usr/share/nginx/html                                              0.1s
+ => exporting to image                                                                                             0.9s
+ => => exporting layers                                                                                            0.3s
+ => => exporting manifest sha256:641e8cd3307e5de7f34aa0cfd8ef29c643e9c0e2b81d3653b36c2ea5c84182dd                  0.0s
+ => => exporting config sha256:a3cbf826004161661533bcea7678f0e791090e65d3bc867ae06d71a59cb9b61e                    0.0s
+ => => exporting attestation manifest sha256:5bb5945e5c771bb2088bf58254d35aceeb54c5e8f2f3011c11220cc4176f6426      0.1s
+ => => exporting manifest list sha256:0f164e66ecf29c3911f8e3fa03797342d7c996b08117775d94ad70c474c7a8f4             0.0s
+ => => naming to docker.io/gvnaressh/todo-frontend:latest                                                          0.0s
+ => => unpacking to docker.io/gvnaressh/todo-frontend:latest                                                       0.1s
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend>docker push gvnaressh/todo-frontend:latest
+
+--------------------------------------------
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend>docker push gvnaressh/todo-frontend:latest
+The push refers to repository [docker.io/gvnaressh/todo-frontend]
+532a23145349: Waiting
+c544760e6514: Waiting
+8e48f75105d8: Waiting
+f18232174bc9: Waiting
+3cc2eb67bce9: Waiting
+dde65f7af9d6: Waiting
+33b69ab3d4e7: Waiting
+bbdf43ac95df: Waiting
+19f9a172b25c: Waiting
+e57f9eaa9ba5: Waiting
+push access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend>docker login
+
+USING WEB-BASED LOGIN
+To sign in with credentials on the command line, use 'docker login -u <username>'
+
+Your one-time device confirmation code is: SBFG-CLMK
+Press ENTER to open your browser or submit your device code here: https://login.docker.com/activate
+
+Waiting for authentication in the browser…
+
+gvnaressh
+Uzwall12578*
+
+Login Succeeded
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend>
+
+
+docker push gvnaressh/todo-frontend:latest
+
+
+-----------------------
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend>docker push gvnaressh/todo-frontend:latest
+The push refers to repository [docker.io/gvnaressh/todo-frontend]
+33b69ab3d4e7: Pushed
+f18232174bc9: Mounted from gvnaressh/todo-backend
+3cc2eb67bce9: Pushed
+532a23145349: Pushed
+8e48f75105d8: Pushed
+bbdf43ac95df: Pushed
+19f9a172b25c: Pushed
+e57f9eaa9ba5: Pushed
+c544760e6514: Pushed
+dde65f7af9d6: Pushed
+latest: digest: sha256:0f164e66ecf29c3911f8e3fa03797342d7c996b08117775d94ad70c474c7a8f4 size: 856
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend>
+-----------------------
+
+kubectl apply -f k8s/frontend-deployment.yaml
+
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl apply -f k8s/frontend-deployment.yaml
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl apply -f k8s/frontend-deployment.yaml
+service/frontend-service created
+deployment.apps/frontend created
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
+
+
+minikube service frontend-service
+
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>minikube service frontend-service
+|-----------|------------------|-------------|---------------------------|
+| NAMESPACE |       NAME       | TARGET PORT |            URL            |
+|-----------|------------------|-------------|---------------------------|
+| default   | frontend-service |          80 | http://192.168.49.2:30008 |
+|-----------|------------------|-------------|---------------------------|
+* Starting tunnel for service frontend-service.
+|-----------|------------------|-------------|------------------------|
+| NAMESPACE |       NAME       | TARGET PORT |          URL           |
+|-----------|------------------|-------------|------------------------|
+| default   | frontend-service |             | http://127.0.0.1:62825 |
+|-----------|------------------|-------------|------------------------|
+* Opening service default/frontend-service in default browser...
+! Because you are using a Docker driver on windows, the terminal needs to be open to run it.
+
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
+
+Open this in your browser to see the deployed React app inside Kubernetes 🎉
+Open this in your browser to see the deployed React app inside Kubernetes 🎉
+Open this in your browser to see the deployed React app inside Kubernetes 🎉
 
 
 
+
+rajesh
+http://127.0.0.1:61201
 
 
 
