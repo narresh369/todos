@@ -437,6 +437,75 @@ NAME              TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
 backend-service   NodePort   10.102.153.180   <none>        5000:32410/TCP   16m
 
 
+=========================================
+CHANGE PORT AND ENTER THIS COMMAND:E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\k8s\backend-deployment.yaml
+  ports:
+    - port: 5000      
+      nodePort: 32410 
+	  
+	  E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl apply -f k8s/backend-deployment.yaml
+service/backend-service configured
+deployment.apps/backend unchanged
+
+
+kubectl apply -f k8s/backend-deployment.yaml
+kubectl apply -f k8s/backend-deployment.yaml
+kubectl apply -f k8s/backend-deployment.yaml
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl get svc backend-service
+NAME              TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+backend-service   NodePort   10.102.153.180   <none>        5000:32410/TCP   24m
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl apply -f k8s/backend-deployment.yaml
+service/backend-service configured
+deployment.apps/backend unchanged
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl get svc backend-service
+NAME              TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+backend-service   NodePort   10.102.153.180   <none>        5000:32410/TCP   25m
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>minikube service backend-service
+|-----------|-----------------|-------------|---------------------------|
+| NAMESPACE |      NAME       | TARGET PORT |            URL            |
+|-----------|-----------------|-------------|---------------------------|
+| default   | backend-service |        5000 | http://192.168.49.2:32410 |
+|-----------|-----------------|-------------|---------------------------|
+* Starting tunnel for service backend-service.
+|-----------|-----------------|-------------|------------------------|
+| NAMESPACE |      NAME       | TARGET PORT |          URL           |
+|-----------|-----------------|-------------|------------------------|
+| default   | backend-service |             | http://127.0.0.1:61201 |
+|-----------|-----------------|-------------|------------------------|
+* Opening service default/backend-service in default browser...
+! Because you are using a Docker driver on windows, the terminal needs to be open to run it.
+=========================================
+
+
+http://127.0.0.1:61201/api/todos
+
+[{"id":5,"title":"test","completed":false},{"id":4,"title":"hello render","completed":true},{"id":3,"title":"go to school and pay fee","completed":false},{"id":2,"title":"get milk and corn","completed":true}]
+
+❌ Why http://192.168.49.2:32410 is not working:
+That IP (192.168.49.2) is the VM IP, but Windows firewalls or network isolation between host and the Minikube VM often block external NodePort access from the host system, especially with Docker Desktop.
+
+Even though Minikube shows the NodePort URL, it often won’t work unless you’re using a different Minikube driver (like Hyper-V or VirtualBox), or you’re inside WSL/Linux.
+
+
+
+git add .
+git commit -m "Updated files Edited Dockerfile with ignore file"
+git remote add origin https://github.com/narresh369/todos.git
+git branch -M main
+git push -u origin main
+
+
+
+
+
+
+
+
+
 
 
 STEP 5: Finalize Jenkins Pipeline
