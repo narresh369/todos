@@ -3,13 +3,12 @@ kind: Service
 metadata:
   name: frontend-service
 spec:
-  type: NodePort
   selector:
     app: frontend
   ports:
     - port: 80
-      targetPort: 80
-      nodePort: 30008 # You can pick a free port
+      targetPort: 5173
+  type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -29,4 +28,4 @@ spec:
         - name: frontend
           image: gvnaressh/todo-frontend:latest
           ports:
-            - containerPort: 80
+            - containerPort: 5173

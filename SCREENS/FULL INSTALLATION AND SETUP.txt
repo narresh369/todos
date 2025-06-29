@@ -499,7 +499,24 @@ git branch -M main
 git push -u origin main
 
 
+http://localhost:5173/
 
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend>npm run dev
+
+
+That’s great to hear your frontend is working locally! Now, let’s move on to testing it inside Kubernetes just like your backend.
+
+
+ Step-by-Step: Deploy React Frontend to Kubernetes (Minikube)
+
+1. 🧾 Create a Dockerfile for the Frontend
+
+docker build -t your-dockerhub-username/todo-frontend:latest .
+docker push your-dockerhub-username/todo-frontend:latest
+
+
+docker build -t gvnaressh/todo-frontend:latest .
+docker push gvnaressh/todo-frontend:latest
 
 
 
