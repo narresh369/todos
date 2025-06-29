@@ -182,6 +182,11 @@ docker run -d --name jenkins -u root -p 8080:8080 -p 50000:50000 -v /var/run/doc
 
 
 
+docker exec -it jenkins bash
+apt update && apt install -y docker.io
+exit
+
+
 
 
 BACKEND DEPLOYED IN RENDER.COM
