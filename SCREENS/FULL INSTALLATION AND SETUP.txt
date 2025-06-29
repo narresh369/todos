@@ -63,6 +63,115 @@ git branch -M main
 git push -u origin main
 
 
+MINIKUBE:
+========
+https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download
+
+E:\software\minikube-installer.exe
+
+C:\Users\Naresh>minikube version
+minikube version: v1.36.0
+commit: f8f52f5de11fc6ad8244afac475e1d0f96841df1-dirty
+
+C:\Users\Naresh>
+
+
+Step-by-Step: Install Minikube on Windows
+🔹 1. Download Minikube for Windows
+Visit the official page:
+👉 https://minikube.sigs.k8s.io/docs/start/
+
+Or download directly:
+👉 https://github.com/kubernetes/minikube/releases/latest
+Look for minikube-windows-amd64.exe
+
+🔹 2. Rename and Move to PATH
+After download:
+
+Rename file to minikube.exe
+
+Move it to a folder already in your PATH (e.g., C:\Windows\System32)
+Or add the folder containing minikube.exe to your system’s environment variable PATH.
+
+Open Command Prompt again and test:
+
+minikube version
+
+C:\Users\Naresh>minikube start
+* minikube v1.36.0 on Microsoft Windows 11 Home Single Language 10.0.26100.4202 Build 26100.4202
+
+If you use Docker Desktop, Minikube will automatically use Docker as its driver.
+
+Microsoft Windows [Version 10.0.26100.4202]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Naresh>minikube version
+minikube version: v1.36.0
+commit: f8f52f5de11fc6ad8244afac475e1d0f96841df1-dirty
+
+C:\Users\Naresh>minikube start
+* minikube v1.36.0 on Microsoft Windows 11 Home Single Language 10.0.26100.4202 Build 26100.4202
+* Automatically selected the docker driver
+* Using Docker Desktop driver with root privileges
+* Starting "minikube" primary control-plane node in "minikube" cluster
+* Pulling base image v0.0.47 ...
+* Downloading Kubernetes v1.33.1 preload ...
+    > preloaded-images-k8s-v18-v1...:  347.04 MiB / 347.04 MiB  100.00% 1.37 Mi
+    > gcr.io/k8s-minikube/kicbase...:  363.46 MiB / 502.26 MiB  72.36% 1.04 MiB
+	
+---------------------------------------------------------
+Microsoft Windows [Version 10.0.26100.4202]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Naresh>minikube version
+minikube version: v1.36.0
+commit: f8f52f5de11fc6ad8244afac475e1d0f96841df1-dirty
+
+C:\Users\Naresh>minikube start
+* minikube v1.36.0 on Microsoft Windows 11 Home Single Language 10.0.26100.4202 Build 26100.4202
+* Automatically selected the docker driver
+* Using Docker Desktop driver with root privileges
+* Starting "minikube" primary control-plane node in "minikube" cluster
+* Pulling base image v0.0.47 ...
+* Downloading Kubernetes v1.33.1 preload ...
+    > preloaded-images-k8s-v18-v1...:  347.04 MiB / 347.04 MiB  100.00% 1.37 Mi
+    > gcr.io/k8s-minikube/kicbase...:  502.26 MiB / 502.26 MiB  100.00% 1.03 Mi
+* Creating docker container (CPUs=2, Memory=2200MB) ...
+! Failing to connect to https://registry.k8s.io/ from both inside the minikube container and host machine
+* To pull new external images, you may need to configure a proxy: https://minikube.sigs.k8s.io/docs/reference/networking/proxy/
+* Preparing Kubernetes v1.33.1 on Docker 28.1.1 ...
+  - Generating certificates and keys ...
+  - Booting up control plane ...
+  - Configuring RBAC rules ...
+* Configuring bridge CNI (Container Networking Interface) ...
+* Verifying Kubernetes components...
+  - Using image gcr.io/k8s-minikube/storage-provisioner:v5
+* Enabled addons: storage-provisioner, default-storageclass
+* Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+
+C:\Users\Naresh>	
+---------------------------------------------------------	
+	
+minikube status
+
+C:\Users\Naresh>minikube status
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+
+
+C:\Users\Naresh>
+---------------------------------------------------------
+
+
+
+
+
+
+
 BACKEND DEPLOYED IN RENDER.COM
 https://todos-31gl.onrender.com/
 https://todos-31gl.onrender.com/api/todos
