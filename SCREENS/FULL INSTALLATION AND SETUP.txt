@@ -1,0 +1,171 @@
+FULL INSTALLATION AND SETUP
+
+111111111111
+INSTALL DOCKER DESKTOP
+E:\software\Docker Desktop Installer.exe
+
+START DOCKER DESKTOP
+
+222222222222
+Open CMD -->Run as Administrator
+C:\Users\Naresh>docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+
+
+333333333333
+LOGIN TO JENKINS
+http://localhost:8080
+
+
+C:\Windows\System32>docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+df65857f181040fb808f95cd81cd5a30
+
+TO START JENKINS
+docker start jenkins
+
+C:\Windows\System32>docker start jenkins
+
+---------------------------------
+CHECK IF IT RUNNING: docker ps -a
+
+C:\Users\Naresh>docker ps -a
+CONTAINER ID   IMAGE                 COMMAND                  CREATED        STATUS          PORTS                                              NAMES
+83014020abf6   jenkins/jenkins:lts   "/usr/bin/tini -- /u…"   17 hours ago   Up 44 seconds   0.0.0.0:8080->8080/tcp, 0.0.0.0:50000->50000/tcp   jenkins
+
+C:\Users\Naresh>
+---------------------------------
+TO REMOVE JENKINS : docker rm jenkins
+
+JENKINS USENAME AND PASSWORD
+Username : fivedata
+Password : fivedata123
+Email : gvnaressh@gmail.com
+
+
+Plugin - kubernetes-cd.hpi version 1.0.0
+Kubernetes Continous Deploy
+
+
+DOCKER HUB USERNAME AND PASSWORD
+Username : gvnaressh
+Password : Uzwall12578*
+
+gvnaressh@gmail.com
+
+
+https://github.com/narresh369/todos.git
+
+PUSH NEW FILES TO GITHUB:
+=========================
+git add .
+git commit -m "Updated files Edited Dockerfile with ignore file"
+git remote add origin https://github.com/narresh369/todos.git
+git branch -M main
+git push -u origin main
+
+
+BACKEND DEPLOYED IN RENDER.COM
+https://todos-31gl.onrender.com/
+https://todos-31gl.onrender.com/api/todos
+
+[{"id":5,"title":"test","completed":false},{"id":4,"title":"hello render","completed":true},{"id":3,"title":"go to school and pay fee","completed":false},{"id":2,"title":"get milk and corn","completed":true}]
+
+
+full flow using Jenkins + Docker + K8s
+full flow using Jenkins + Docker + K8s
+full flow using Jenkins + Docker + K8s
+
+
+C:\Windows\System32>docker info
+Client:
+ Version:    27.4.0
+ Context:    desktop-linux
+ Debug Mode: false
+ Plugins:
+  ai: Ask Gordon - Docker Agent (Docker Inc.)
+    Version:  v0.5.1
+    Path:     C:\Program Files\Docker\cli-plugins\docker-ai.exe
+  buildx: Docker Buildx (Docker Inc.)
+    Version:  v0.19.2-desktop.1
+    Path:     C:\Program Files\Docker\cli-plugins\docker-buildx.exe
+  compose: Docker Compose (Docker Inc.)
+    Version:  v2.31.0-desktop.2
+    Path:     C:\Program Files\Docker\cli-plugins\docker-compose.exe
+  debug: Get a shell into any image or container (Docker Inc.)
+    Version:  0.0.37
+    Path:     C:\Program Files\Docker\cli-plugins\docker-debug.exe
+  desktop: Docker Desktop commands (Beta) (Docker Inc.)
+    Version:  v0.1.0
+    Path:     C:\Program Files\Docker\cli-plugins\docker-desktop.exe
+  dev: Docker Dev Environments (Docker Inc.)
+    Version:  v0.1.2
+    Path:     C:\Program Files\Docker\cli-plugins\docker-dev.exe
+  extension: Manages Docker extensions (Docker Inc.)
+    Version:  v0.2.27
+    Path:     C:\Program Files\Docker\cli-plugins\docker-extension.exe
+  feedback: Provide feedback, right in your terminal! (Docker Inc.)
+    Version:  v1.0.5
+    Path:     C:\Program Files\Docker\cli-plugins\docker-feedback.exe
+  init: Creates Docker-related starter files for your project (Docker Inc.)
+    Version:  v1.4.0
+    Path:     C:\Program Files\Docker\cli-plugins\docker-init.exe
+  sbom: View the packaged-based Software Bill Of Materials (SBOM) for an image (Anchore Inc.)
+    Version:  0.6.0
+    Path:     C:\Program Files\Docker\cli-plugins\docker-sbom.exe
+  scout: Docker Scout (Docker Inc.)
+    Version:  v1.15.1
+    Path:     C:\Program Files\Docker\cli-plugins\docker-scout.exe
+
+Server:
+ Containers: 1
+  Running: 1
+  Paused: 0
+  Stopped: 0
+ Images: 1
+ Server Version: 27.4.0
+ Storage Driver: overlayfs
+  driver-type: io.containerd.snapshotter.v1
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Cgroup Version: 2
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+ CDI spec directories:
+  /etc/cdi
+  /var/run/cdi
+ Swarm: inactive
+ Runtimes: io.containerd.runc.v2 nvidia runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 472731909fa34bd7bc9c087e4c27943f9835f111
+ runc version: v1.1.13-0-g58aa920
+ init version: de40ad0
+ Security Options:
+  seccomp
+   Profile: unconfined
+  cgroupns
+ Kernel Version: 6.6.87.1-microsoft-standard-WSL2
+ Operating System: Docker Desktop
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 8
+ Total Memory: 3.709GiB
+ Name: docker-desktop
+ ID: 1c7fb5d5-79dd-4521-95c2-26c074351547
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ HTTP Proxy: http.docker.internal:3128
+ HTTPS Proxy: http.docker.internal:3128
+ No Proxy: hubproxy.docker.internal
+ Labels:
+  com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+ Experimental: false
+ Insecure Registries:
+  hubproxy.docker.internal:5555
+  127.0.0.0/8
+ Live Restore Enabled: false
+
+WARNING: daemon is not using the default seccomp profile
+
+C:\Windows\System32>

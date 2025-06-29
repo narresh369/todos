@@ -198,6 +198,264 @@ o  Scaffolding project in E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-B
 E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
 
 npm install axios
+
+
+https://todos-zeta-beryl.vercel.app/
+
+
+
+DOCKER DESKTOP:
+===============
+E:\software\Docker Desktop Installer
+
+gvnaressh@gmail.com
+Gvnaressh3695
+
+✅ Tools Required to Test Locally
+1️⃣ Docker Desktop ✅ (You already have this)
+
+2️⃣ Jenkins (Dockerized)
+Run Jenkins inside Docker:
+
+
+docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+
+------------------
+C:\Users\Naresh>docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+Unable to find image 'jenkins/jenkins:lts' locally
+lts: Pulling from jenkins/jenkins
+2315362e4443: Download complete
+f1c4b8ee4b6f: Download complete
+51c9d25ed578: Download complete
+719a01689f92: Download complete
+e05a8359c72d: Download complete
+4185f63a4bf1: Download complete
+62d5bb186774: Download complete
+10709260192c: Download complete
+1c8d8eef6986: Download complete
+474c0ab7c65d: Download complete
+0c01110621e0: Download complete
+981fa0afce25: Download complete
+Digest: sha256:f4607803bd1ee4dc91b1695b07d3a04c77b4f575a507ff65375af888e1497662
+Status: Downloaded newer image for jenkins/jenkins:lts
+d46cc4a205b2be801915216319af74ee19b7bc7249afce4abc432da1435b6d21
+
+C:\Users\Naresh>
+------------------
+
+🟡 Access Jenkins at:
+http://localhost:8080
+It will ask for an initial admin password:
+
+C:\Users\Naresh>docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+2929d01cdb0f4c5da2650caa0f43404e
+
+JENKINS
+fivedata
+fivedata123
+gvnaressh@gmail.com
+
+DOCKER INSTALLATION
+https://youtu.be/Tg2krHXHzBc?list=PLVz2XdJiJQxzMiFDnwxUDxmuZQU3igcBb
+https://youtu.be/Tg2krHXHzBc?list=PLVz2XdJiJQxzMiFDnwxUDxmuZQU3igcBb
+https://youtu.be/Tg2krHXHzBc?list=PLVz2XdJiJQxzMiFDnwxUDxmuZQU3igcBb
+
+https://youtu.be/vBoOXP6BkDI
+https://youtu.be/vBoOXP6BkDI
+https://youtu.be/vBoOXP6BkDI
+
+https://medium.com/@javatechie/kubernetes-tutorial-run-deploy-spring-boot-application-in-k8s-cluster-using-yaml-configuration-3b079154d232
+https://medium.com/@javatechie/kubernetes-tutorial-run-deploy-spring-boot-application-in-k8s-cluster-using-yaml-configuration-3b079154d232
+https://medium.com/@javatechie/kubernetes-tutorial-run-deploy-spring-boot-application-in-k8s-cluster-using-yaml-configuration-3b079154d232
+
+https://youtu.be/qof9A8k64rA?list=PLVz2XdJiJQxybsyOxK7WFtteH42ayn5i9
+https://youtu.be/qof9A8k64rA?list=PLVz2XdJiJQxybsyOxK7WFtteH42ayn5i9
+https://youtu.be/qof9A8k64rA?list=PLVz2XdJiJQxybsyOxK7WFtteH42ayn5i9
+
+https://www.youtube.com/c/JavaTechie/playlists
+
+https://youtu.be/Tg2krHXHzBc?list=PLVz2XdJiJQxzMiFDnwxUDxmuZQU3igcBb
+https://youtu.be/Tg2krHXHzBc?list=PLVz2XdJiJQxzMiFDnwxUDxmuZQU3igcBb
+https://youtu.be/Tg2krHXHzBc?list=PLVz2XdJiJQxzMiFDnwxUDxmuZQU3igcBb
+
+https://github.com/Java-Techie-jt/devops-automation
+https://github.com/Java-Techie-jt/devops-automation
+https://github.com/Java-Techie-jt/devops-automation
+
+
+
+KUBERNETES:
+----------
+kubectl (Kubernetes CLI)
+choco install kubernetes-cli   # on Windows (with Chocolatey)
+kubectl version --client
+
+OPEN CMD RUN AS ADMINISTRATOR
+
+*****************************
+choco install kubernetes-cli 
+*****************************
+---------
+Microsoft Windows [Version 10.0.26100.4202]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Windows\System32>kubectl version --client
+Client Version: v1.30.5
+Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
+
+C:\Windows\System32>choco install kubernetes-cli
+Chocolatey v1.2.1
+Installing the following packages:
+kubernetes-cli
+By installing, you accept licenses for the packages.
+
+kubernetes-cli v1.33.2 [Approved]
+kubernetes-cli package files install completed. Performing other installation steps.
+The package kubernetes-cli wants to run 'chocolateyInstall.ps1'.
+Note: If you don't run this script, the installation will fail.
+Note: To confirm automatically next time, use '-y' or consider:
+choco feature enable -n allowGlobalConfirmation
+Do you want to run the script?([Y]es/[A]ll - yes to all/[N]o/[P]rint): Yes
+
+Extracting 64-bit C:\ProgramData\chocolatey\lib\kubernetes-cli\tools\kubernetes-client-windows-amd64.tar.gz to C:\ProgramData\chocolatey\lib\kubernetes-cli\tools...
+C:\ProgramData\chocolatey\lib\kubernetes-cli\tools
+Extracting 64-bit C:\ProgramData\chocolatey\lib\kubernetes-cli\tools\kubernetes-client-windows-amd64.tar to C:\ProgramData\chocolatey\lib\kubernetes-cli\tools...
+C:\ProgramData\chocolatey\lib\kubernetes-cli\tools
+Environment Vars (like PATH) have changed. Close/reopen your shell to
+ see the changes (or in powershell/cmd.exe just type `refreshenv`).
+ ShimGen has successfully created a shim for kubectl-convert.exe
+ ShimGen has successfully created a shim for kubectl.exe
+ The install of kubernetes-cli was successful.
+  Software installed to 'C:\ProgramData\chocolatey\lib\kubernetes-cli\tools'
+
+Chocolatey installed 1/1 packages.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+
+C:\Windows\System32>
+--------- 
+
+************************
+kubectl version --client
+************************
+C:\Windows\System32>kubectl version --client
+Client Version: v1.33.2
+Kustomize Version: v5.6.0
+
+C:\Windows\System32>
+
+
+
+
+Minikube (Local Kubernetes Cluster) 
+ 
+ https://minikube.sigs.k8s.io/docs/start/
+ 
+ https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download
+ 
+
+
+https://youtu.be/vBoOXP6BkDI
+
+
+
+111111111111
+INSTALL DOCKER DESKTOP
+E:\software\Docker Desktop Installer.exe
+
+START DOCKER DESKTOP
+
+222222222222
+Open CMD -->Run as Administrator
+C:\Users\Naresh>docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+
+
+
+
+
+
+
+
+---
+
+### ✅ Here's what you can consider doing next:
+
+---
+
+### 1. 🔒 **Secure the Application**
+
+* **Rate limiting / API protection:** Use a rate limiter middleware (like `express-rate-limit`) on your backend.
+* **CORS config:** Only allow your frontend domain in CORS settings.
+* **Sanitize inputs:** Use libraries like `express-validator` to prevent injection attacks.
+* **HTTPS:** Both Render and Vercel use HTTPS by default — you're good here.
+
+---
+
+### 2. ⚙️ **Add CI/CD Automation (Optional)**
+
+* Use GitHub Actions to trigger build/deploy automatically when you push to `main` branch.
+* Vercel and Render both support GitHub hooks (Render under "Deploy from Git").
+
+---
+
+### 3. 📝 **Add Features (Suggestions)**
+
+* ✅ Mark task as complete (you already have this)
+* ✏️ Edit tasks
+* 📆 Due dates and priorities
+* 🔍 Search and filter
+* 👥 User authentication (JWT, bcryptjs)
+
+---
+
+### 4. 🔗 **Connect a Custom Domain (Optional)**
+
+* **On Vercel:** Go to project settings → Domains → Add your custom domain
+* **On Render:** Same for backend API if needed
+
+---
+
+### 5. 📊 **Monitor Performance & Errors**
+
+* Use [LogRocket](https://logrocket.com/), [Sentry](https://sentry.io/), or browser dev tools for frontend
+* Use Render’s logs tab for backend issues
+
+---
+
+### 6. 📤 **Document Your Project**
+
+Prepare a solid `README.md`:
+
+```md
+# 📝 Full Stack Todo App
+
+## 🖥️ Frontend
+- Vite + React
+- Hosted on [Vercel](https://your-frontend.vercel.app)
+
+## 🛠️ Backend
+- Express + PostgreSQL
+- Hosted on [Render](https://your-backend.onrender.com)
+
+## 🔐 Features
+- Add, delete, toggle tasks
+- REST API integration
+- Responsive design
+
+## 📦 Tech Stack
+- React, Vite, Axios
+- Node.js, Express, PostgreSQL
+- Deployed using Vercel & Render
+```
+
+---
+
+Would you like help with adding any **new feature**, setting up **CI/CD**, or creating a **GitHub README**?
+
+
+
+
+
+
 ********
 
 E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git init
