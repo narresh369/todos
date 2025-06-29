@@ -429,6 +429,16 @@ C:\Users\Naresh>
 
 
 
+kubectl edit service backend-service
+
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl get svc backend-service
+NAME              TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+backend-service   NodePort   10.102.153.180   <none>        5000:32410/TCP   16m
+
+
+
+
 STEP 5: Finalize Jenkins Pipeline
 Now that the manual steps work:
 
