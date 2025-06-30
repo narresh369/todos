@@ -691,6 +691,177 @@ http://127.0.0.1:61201
 
 
 
+VITE_API_URL=http://backend-service:5000
+✅ This allows your frontend container inside Kubernetes to call the backend service via internal DNS.
+If you made changes, don’t forget to:
+Rebuild the frontend image.
+Push to Docker Hub.
+Re-apply the Kubernetes deployment....i have changed  in .env
+
+
+1. Rebuild the Frontend Image
+Navigate to the frontend directory and rebuild the Docker image:
+
+docker build -t gvnaressh/todo-frontend:latest .
+
+----------------
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>cd frontend
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend>docker build -t gvnaressh/todo-frontend:latest .
+[+] Building 495.9s (16/16) FINISHED                                                               docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.6s
+ => => transferring dockerfile: 327B                                                                               0.5s
+ => [internal] load metadata for docker.io/library/nginx:stable-alpine                                             7.1s
+ => [internal] load metadata for docker.io/library/node:18-alpine                                                  7.6s
+ => [auth] library/node:pull token for registry-1.docker.io                                                        0.0s
+ => [auth] library/nginx:pull token for registry-1.docker.io                                                       0.0s
+ => [internal] load .dockerignore                                                                                  1.8s
+ => => transferring context: 2B                                                                                    0.4s
+ => [builder 1/6] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35c  1.0s
+ => => resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8c  0.7s
+ => [internal] load build context                                                                                 17.4s
+ => => transferring context: 289.91kB                                                                             16.4s
+ => CACHED [stage-1 1/2] FROM docker.io/library/nginx:stable-alpine@sha256:aed99734248e851764f1f2146835ecad42b5f9  1.0s
+ => => resolve docker.io/library/nginx:stable-alpine@sha256:aed99734248e851764f1f2146835ecad42b5f994081fa6631cc5d  0.6s
+ => CACHED [builder 2/6] WORKDIR /app                                                                              0.0s
+ => CACHED [builder 3/6] COPY package*.json ./                                                                     0.0s
+ => CACHED [builder 4/6] RUN npm install                                                                           0.0s
+ => [builder 5/6] COPY . .                                                                                       141.4s
+ => [builder 6/6] RUN npm run build                                                                              302.5s
+ => [stage-1 2/2] COPY --from=builder /app/dist /usr/share/nginx/html                                              0.3s
+ => exporting to image                                                                                             2.9s
+ => => exporting layers                                                                                            0.8s
+ => => exporting manifest sha256:17cfd1fc4d0d8642130427a54fa6008d4c810329601093ec30f662269ca92834                  0.0s
+ => => exporting config sha256:2bbb984ffe546639e5252080cad778f2a686f9f95c7cf94a9d80fe4ce86d2dc5                    0.0s
+ => => exporting attestation manifest sha256:31d37ee10cbecd7138c27ce8fe334de239882501ace868223bd390c2751fbaa1      0.1s
+ => => exporting manifest list sha256:a7c41fe3327e99bca396d5b8e61558531937a9bc6391f88b746bc803b1bccb27             0.0s
+ => => naming to docker.io/gvnaressh/todo-frontend:latest                                                          0.0s
+ => => unpacking to docker.io/gvnaressh/todo-frontend:latest                                                       1.4s
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend>
+----------------
+
+ 2. Login to Docker Hub (if not already logged in)
+docker login
+-----------------
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>docker login
+Authenticating with existing credentials...
+Login Succeeded
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
+-----------------
+
+Enter your Docker Hub username and password when prompted.
+
+gvnaressh
+Uzwall12578*
+
+3. Push the Updated Image to Docker Hub
+
+docker push gvnaressh/todo-frontend:latest
+------------------
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend>cd ..
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>docker push gvnaressh/todo-frontend:latest
+The push refers to repository [docker.io/gvnaressh/todo-frontend]
+f18232174bc9: Layer already exists
+3cc2eb67bce9: Layer already exists
+e57f9eaa9ba5: Layer already exists
+3ccb78699feb: Pushed
+d07481180cd7: Pushed
+dde65f7af9d6: Layer already exists
+c544760e6514: Layer already exists
+bbdf43ac95df: Layer already exists
+532a23145349: Layer already exists
+19f9a172b25c: Layer already exists
+latest: digest: sha256:a7c41fe3327e99bca396d5b8e61558531937a9bc6391f88b746bc803b1bccb27 size: 856
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
+------------------
+
+4. Re-apply the Frontend Kubernetes Deployment
+
+Assuming you have frontend-deployment.yaml inside your k8s folder, run:
+kubectl apply -f k8s/frontend-deployment.yaml
+
+kubectl rollout restart deployment frontend
+
+
+----------------------
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl rollout restart deployment frontend
+deployment.apps/frontend restarted
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl apply -f k8s/frontend-deployment.yaml
+service/frontend-service unchanged
+deployment.apps/frontend unchanged
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
+----------------------
+
+kubectl get pods
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+backend-6845f99c98-6zwkn    1/1     Running   0          91m
+frontend-7b7d6fdb8b-wps8w   1/1     Running   0          46s
+postgres-5464b79444-kvxc6   1/1     Running   0          94m
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
+
+
+5. (Optional) Expose Frontend with NodePort
+If your frontend-service is defined with type: NodePort, you can get the access URL with:
+
+minikube service frontend-service
+
+OPEN DOCKER DESKTOP AND START JENKINS + MINIKUBE
+IN CMD START
+minikube start
+---------------
+C:\Users\Naresh>minikube start
+* minikube v1.36.0 on Microsoft Windows 11 Home Single Language 10.0.26100.4202 Build 26100.4202
+* Using the docker driver based on existing profile
+* Starting "minikube" primary control-plane node in "minikube" cluster
+* Pulling base image v0.0.47 ...
+* Updating the running docker "minikube" container ...
+! Failing to connect to https://registry.k8s.io/ from both inside the minikube container and host machine
+* To pull new external images, you may need to configure a proxy: https://minikube.sigs.k8s.io/docs/reference/networking/proxy/
+* Preparing Kubernetes v1.33.1 on Docker 28.1.1 ...
+* Verifying Kubernetes components...
+  - Using image gcr.io/k8s-minikube/storage-provisioner:v5
+* Enabled addons: default-storageclass, storage-provisioner
+* Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+
+C:\Users\Naresh>
+---------------
+C:\Users\Naresh>kubectl get pods
+NAME                        READY   STATUS             RESTARTS       AGE
+backend-6845f99c98-6zwkn    0/1     CrashLoopBackOff   1 (15s ago)    18h
+frontend-6948b46ff9-r48tv   1/1     Running            1 (5m3s ago)   17h
+postgres-5464b79444-kvxc6   1/1     Running            1 (5m3s ago)   18h
+
+C:\Users\Naresh>
+
+
+minikube service frontend-service
+minikube service backend-service
+
+
+
+
+docker build -t gvnaressh/todo-frontend:latest .
+docker push gvnaressh/todo-frontend:latest
+kubectl rollout restart deployment frontend
+kubectl get pods
+
+
+
+
+
+
+
+
 STEP 5: Finalize Jenkins Pipeline
 Now that the manual steps work:
 
