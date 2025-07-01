@@ -1,0 +1,43 @@
+Install ngrok (if not installed):
+Go to: https://ngrok.com/download → Download & install.
+
+https://ngrok.com/downloads/windows
+
+Microsoft Windows [Version 10.0.26100.4202]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Windows\System32>choco install ngrok
+Chocolatey v1.2.1
+Installing the following packages:
+ngrok
+By installing, you accept licenses for the packages.
+ngrok v3.22.1 already installed.
+ Use --force to reinstall, specify a version to install, or try upgrade.
+
+Chocolatey installed 0/1 packages.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+
+Warnings:
+ - ngrok - ngrok v3.22.1 already installed.
+ Use --force to reinstall, specify a version to install, or try upgrade.
+
+C:\Windows\System32>
+----------------------------------------------------------
+ngrok 
+🀠 Check out ngrok-go v2 — simpler & way more powerful: https://ngrok.com/r/go-sdk-v2 
+Session Status                online                                                                                                                          Account                       gvnaressh@gmail.com (Plan: Free)                                                                              Update                        update available (version 3.23.3, Ctrl-U to update)                                                                    Version                       3.22.1                                                                                                                          Region                        India (in)                                                                                                                      Latency                       63ms                                                                                                                  Web Interface                 http://127.0.0.1:4040
+Forwarding                    https://6096-2401-4900-8fcc-5c3-80ff-de02-9d1c-a4e7.ngrok-free.app -> http://localhost:8080
+
+Connections                   ttl     opn     rt1     rt5     p50     p90                                                                                                                   0       0       0.00    0.00    0.00    0.00    
+----------------------------------------------------------
+https://github.com/narresh369/todos.git
+----------------------------------------------------------
+https://6096-2401-4900-8fcc-5c3-80ff-de02-9d1c-a4e7.ngrok-free.app/github-webhook/
+GIT Hub Username and Password
+@narresh
+Uzwall12578
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------
+----------------------------------------------------------

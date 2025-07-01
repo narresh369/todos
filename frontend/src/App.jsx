@@ -46,7 +46,7 @@ function App() {
   return (
     <div className="app-container">
       <div className="todo-card">
-        <h1>📝 Todo App</h1>
+        <h1>📝 Todo App - Updated for Jenkins</h1>
         <div className="input-group">
           <input
             type="text"

@@ -1,0 +1,228 @@
+1. OPEN DOCKER DESKTOP AND START JENKINS AND MINIKUBE CONTAINERS
+
+2. 
+
+3. Commands to Run Everything
+
+ 🔹 Start Minikube (once)
+
+```bash
+***************
+minikube start
+***************
+```
+
+ 🔹 Apply Deployments
+
+```bash
+RUN FROM "E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp"
+*********************************************
+kubectl apply -f k8s/postgres-pvc.yaml
+kubectl apply -f k8s/postgres-deployment.yaml
+kubectl apply -f k8s/backend-deployment.yaml
+kubectl apply -f k8s/frontend-deployment.yaml
+*********************************************
+```
+
+ 🔹 Check Everything
+
+```bash
+*********************
+kubectl get pods
+kubectl get services
+*********************
+```
+
+ 🔹 Access Frontend
+
+```bash
+COMMAND TO START FRONTEND APPLICATION
+**********************************
+minikube service frontend-service
+**********************************
+```
+
+---
+
+ ✅ 4. Frontend `.env` (Before Build)
+
+```env
+VITE_API_URL=http://backend-service:5000
+
+USE THIS - AND DO PORT FORWARDING
+VITE_API_URL=http://localhost:5000
+```
+
+Then:
+
+```bash
+*****************************************************************
+RUN THESE COMMANDS FROM FRONTEND FOLDER OF YOUR APPLICATION
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\frontend>
+cd frontend
+docker build -t gvnaressh/todo-frontend:latest .
+docker push gvnaressh/todo-frontend:latest
+kubectl rollout restart deployment frontend
+*****************************************************************
+```
+
+---
+PUSH TO GIT AS JENKINS WILL PICKUP TO GENERATE IMAGE
+
+*****************************************************************
+git add .
+git commit -m "Updated files Edited Dockerfile with ignore file"
+git remote add origin https://github.com/narresh369/todos.git
+git branch -M main
+git push -u origin main
+*****************************************************************
+
+---------------------------------------------------------------------------------------------------
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git remote add origin https://github.com/narresh369/todos.git
+error: remote origin already exists.
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git branch -M main
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git push -u origin main
+Enumerating objects: 15, done.
+Counting objects: 100% (15/15), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (10/10), 933.64 KiB | 15.30 MiB/s, done.
+Total 10 (delta 5), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (5/5), completed with 5 local objects.
+To https://github.com/narresh369/todos.git
+   7e05fcf..ad46f01  main -> main
+branch 'main' set up to track 'origin/main'.
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
+---------------------------------------------------------------------------------------------------
+
+
+TEST WHETHER BACKEND IS WORKING IN KUBERNETES
+************************************************************************************************************
+kubectl run debugpod --image=busybox -it --rm --restart=Never -- wget -qO- backend-service:5000/api/todos
+************************************************************************************************************
+C:\Users\Naresh>kubectl run debugpod --image=busybox -it --rm --restart=Never -- wget -qO- backend-service:5000/api/todos
+If you don't see a command prompt, try pressing enter.
+[{"id":5,"title":"test","completed":false},{"id":4,"title":"hello render","completed":true},{"id":3,"title":"go to school and pay fee","completed":false},{"id":2,"title":"get milk and corn","completed":true}]pod "debugpod" deleted
+
+PORT FORWARDING
+******************************************************
+kubectl port-forward service/backend-service 5000:5000
+******************************************************
+C:\Users\Naresh>kubectl port-forward service/backend-service 5000:5000
+Forwarding from 127.0.0.1:5000 -> 5000
+Forwarding from [::1]:5000 -> 5000
+Handling connection for 5000
+
+
+THIS WILL AUTOMATICALLY LAUNCH FRONTEND APP IN BROWSER
+minikube service frontend-service
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+C:\Users\Naresh>minikube service frontend-service
+|-----------|------------------|-------------|---------------------------|
+| NAMESPACE |       NAME       | TARGET PORT |            URL            |
+|-----------|------------------|-------------|---------------------------|
+| default   | frontend-service |          80 | http://192.168.49.2:30008 |
+|-----------|------------------|-------------|---------------------------|
+* Starting tunnel for service frontend-service.
+|-----------|------------------|-------------|------------------------|
+| NAMESPACE |       NAME       | TARGET PORT |          URL           |
+|-----------|------------------|-------------|------------------------|
+| default   | frontend-service |             | http://127.0.0.1:55604 |
+|-----------|------------------|-------------|------------------------|
+* Opening service default/frontend-service in default browser...
+! Because you are using a Docker driver on windows, the terminal needs to be open to run it.
+* Stopping tunnel for service frontend-service.
+
+C:\Users\Naresh>minikube service frontend-service
+|-----------|------------------|-------------|---------------------------|
+| NAMESPACE |       NAME       | TARGET PORT |            URL            |
+|-----------|------------------|-------------|---------------------------|
+| default   | frontend-service |          80 | http://192.168.49.2:30008 |
+|-----------|------------------|-------------|---------------------------|
+* Starting tunnel for service frontend-service.
+|-----------|------------------|-------------|------------------------|
+| NAMESPACE |       NAME       | TARGET PORT |          URL           |
+|-----------|------------------|-------------|------------------------|
+| default   | frontend-service |             | http://127.0.0.1:55661 |
+|-----------|------------------|-------------|------------------------|
+* Opening service default/frontend-service in default browser...
+! Because you are using a Docker driver on windows, the terminal needs to be open to run it.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git add .
+warning: in the working copy of 'frontend/package-lock.json', LF will be replaced by CRLF the next time Git touches it
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git commit -m "Updated files Edited Dockerfile with ignore file"
+[main ad46f01] Updated files Edited Dockerfile with ignore file
+ 6 files changed, 586 insertions(+), 2 deletions(-)
+ create mode 100644 SCREENS/1.txt
+ create mode 100644 SCREENS/2.txt
+ create mode 100644 SCREENS/6.Summary of modern CI-CD -  Deployment flow.png
+ create mode 100644 SCREENS/PROCESS STEPS.txt
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git remote add origin https://github.com/narresh369/todos.git
+error: remote origin already exists.
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git branch -M main
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>git push -u origin main
+Enumerating objects: 15, done.
+Counting objects: 100% (15/15), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (10/10), 933.64 KiB | 15.30 MiB/s, done.
+Total 10 (delta 5), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (5/5), completed with 5 local objects.
+To https://github.com/narresh369/todos.git
+   7e05fcf..ad46f01  main -> main
+branch 'main' set up to track 'origin/main'.
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+C:\Users\Naresh>kubectl get services
+NAME               TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+backend-service    NodePort    10.102.153.180   <none>        5000:32410/TCP   42h
+frontend-service   NodePort    10.103.150.182   <none>        80:30008/TCP     41h
+kubernetes         ClusterIP   10.96.0.1        <none>        443/TCP          44h
+postgres-service   ClusterIP   10.103.80.189    <none>        5432/TCP         42h
+
+C:\Users\Naresh>kubectl run debugpod --image=busybox -it --rm --restart=Never -- wget -qO- backend-service:5000/api/todos
+If you don't see a command prompt, try pressing enter.
+[{"id":5,"title":"test","completed":false},{"id":4,"title":"hello render","completed":true},{"id":3,"title":"go to school and pay fee","completed":false},{"id":2,"title":"get milk and corn","completed":true}]pod "debugpod" deleted
+
+C:\Users\Naresh>kubectl port-forward service/backend-service 5000:5000
+Forwarding from 127.0.0.1:5000 -> 5000
+Forwarding from [::1]:5000 -> 5000
+Handling connection for 5000
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
