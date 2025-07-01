@@ -73,6 +73,10 @@ app.delete('/api/todos/:id', async (req, res) => {
     }
 });
 
-app.listen(port, () => {
+/* app.listen(port, () => {
     console.log(`✅ Server running at http://localhost:${port}`);
+}); */
+app.listen(5000, '0.0.0.0', () => {
+    console.log(`✅ Server running at http://0.0.0.0:5000`);
 });
+  

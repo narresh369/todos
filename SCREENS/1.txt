@@ -1,0 +1,183 @@
+Great! Here's a **complete setup** covering:
+
+---
+
+## ✅ 1. `Jenkinsfile` (for building & deploying backend)
+
+```groovy
+pipeline {
+  agent any
+
+  environment {
+    DOCKERHUB_CREDENTIALS_ID = 'dockerhub-creds' // Set this in Jenkins
+    IMAGE_NAME = 'gvnaressh/todo-backend:latest'
+  }
+
+  stages {
+    stage('Checkout') {
+      steps {
+        git url: 'https://github.com/narresh369/todos.git', branch: 'main'
+      }
+    }
+
+    stage('Build Docker Image') {
+      steps {
+        dir('backend') {
+          script {
+            docker.build("${IMAGE_NAME}")
+          }
+        }
+      }
+    }
+
+    stage('Push to Docker Hub') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: "${DOCKERHUB_CREDENTIALS_ID}", usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+          sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+          sh "docker push ${IMAGE_NAME}"
+        }
+      }
+    }
+
+    stage('Deploy to Kubernetes') {
+      steps {
+        sh 'kubectl rollout restart deployment backend'
+      }
+    }
+  }
+}
+```
+
+---
+
+## ✅ 2. Kubernetes Deployment YAMLs (`k8s/*.yaml`)
+
+### 🗂 `k8s/backend-deployment.yaml`
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: 5000
+      targetPort: 5000
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: gvnaressh/todo-backend:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: DATABASE_URL
+              value: "YOUR_POSTGRES_RENDER_URL"
+```
+
+### 🗂 `k8s/frontend-deployment.yaml`
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      targetPort: 80
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: gvnaressh/todo-frontend:latest
+          ports:
+            - containerPort: 80
+```
+
+---
+
+## ✅ 3. Commands to Run Everything
+
+### 🔹 Start Minikube (once)
+
+```bash
+minikube start
+```
+
+### 🔹 Apply Deployments
+
+```bash
+kubectl apply -f k8s/postgres-pvc.yaml
+kubectl apply -f k8s/postgres-deployment.yaml
+kubectl apply -f k8s/backend-deployment.yaml
+kubectl apply -f k8s/frontend-deployment.yaml
+```
+
+### 🔹 Check Everything
+
+```bash
+kubectl get pods
+kubectl get services
+```
+
+### 🔹 Access Frontend
+
+```bash
+minikube service frontend-service
+```
+
+---
+
+## ✅ 4. Frontend `.env` (Before Build)
+
+```env
+VITE_API_URL=http://backend-service:5000
+```
+
+Then:
+
+```bash
+cd frontend
+docker build -t gvnaressh/todo-frontend:latest .
+docker push gvnaressh/todo-frontend:latest
+kubectl rollout restart deployment frontend
+```
+
+---
+
+Let me know if you'd like to **include CI/CD for frontend too**, or **auto-deploy to Kubernetes after pushing to GitHub**!

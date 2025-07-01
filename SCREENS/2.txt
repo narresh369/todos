@@ -1,0 +1,133 @@
+Perfect! Here's how you can **automate both frontend and backend deployment** to Docker Hub and Kubernetes using **Jenkins + Docker + Kubernetes + GitHub**.
+
+---
+
+## ✅ GitHub Repo Structure (Example)
+
+```
+todos/
+├── backend/
+│   ├── Dockerfile
+│   └── index.js
+├── frontend/
+│   ├── Dockerfile
+│   └── .env  (contains VITE_API_URL=http://backend-service:5000)
+├── k8s/
+│   ├── backend-deployment.yaml
+│   ├── frontend-deployment.yaml
+│   ├── postgres-deployment.yaml
+│   └── postgres-pvc.yaml
+└── Jenkinsfile
+```
+
+---
+
+## ✅ Updated Jenkinsfile (Build & Deploy Both)
+
+Place this at root of repo as `Jenkinsfile`:
+
+```groovy
+pipeline {
+  agent any
+
+  environment {
+    DOCKERHUB_CREDENTIALS_ID = 'dockerhub-creds'
+    BACKEND_IMAGE = 'gvnaressh/todo-backend:latest'
+    FRONTEND_IMAGE = 'gvnaressh/todo-frontend:latest'
+  }
+
+  stages {
+    stage('Clone Repo') {
+      steps {
+        git url: 'https://github.com/narresh369/todos.git', branch: 'main'
+      }
+    }
+
+    stage('Build Backend Image') {
+      steps {
+        dir('backend') {
+          script {
+            docker.build("${BACKEND_IMAGE}")
+          }
+        }
+      }
+    }
+
+    stage('Build Frontend Image') {
+      steps {
+        dir('frontend') {
+          script {
+            docker.build("${FRONTEND_IMAGE}")
+          }
+        }
+      }
+    }
+
+    stage('Push Images to Docker Hub') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: "${DOCKERHUB_CREDENTIALS_ID}", usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+          sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+          sh "docker push ${BACKEND_IMAGE}"
+          sh "docker push ${FRONTEND_IMAGE}"
+        }
+      }
+    }
+
+    stage('Deploy to Kubernetes') {
+      steps {
+        sh 'kubectl apply -f k8s/postgres-pvc.yaml || true'
+        sh 'kubectl apply -f k8s/postgres-deployment.yaml || true'
+        sh 'kubectl apply -f k8s/backend-deployment.yaml'
+        sh 'kubectl apply -f k8s/frontend-deployment.yaml'
+        sh 'kubectl rollout restart deployment backend'
+        sh 'kubectl rollout restart deployment frontend'
+      }
+    }
+  }
+}
+```
+
+---
+
+## ✅ Pre-requisites in Jenkins:
+
+### 🔹 Create Docker Hub Credentials:
+
+* Go to **Manage Jenkins > Credentials > Global**
+* Add **Username + Password**
+* ID: `dockerhub-creds`
+
+### 🔹 Jenkins Agent Has:
+
+* Docker
+* `kubectl`
+* `minikube` configured (or connected to your K8s cluster)
+
+---
+
+## ✅ Frontend `.env`
+
+In `frontend/.env`, make sure:
+
+```env
+VITE_API_URL=http://backend-service:5000
+```
+
+This ensures frontend in Kubernetes calls backend via internal DNS.
+
+---
+
+## ✅ Bonus: Rebuild Pipeline Automatically
+
+If you want Jenkins to **auto-run on `git push`**, configure a **webhook** in GitHub and Jenkins multibranch pipeline or webhook-polling trigger.
+
+---
+
+Let me know if you’d like:
+
+* Jenkinsfile split for backend and frontend
+* Setup GitHub webhook → Jenkins trigger
+* Helm-based deployment
+* Ingress setup (e.g., `frontend.local` domain)
+
+You're doing awesome. Ready to test this now?

@@ -849,17 +849,122 @@ minikube service backend-service
 
 
 
-
+REBUILD FRONTEND
 docker build -t gvnaressh/todo-frontend:latest .
 docker push gvnaressh/todo-frontend:latest
 kubectl rollout restart deployment frontend
 kubectl get pods
 
 
+IN DOCKER DESKTOP START JENKINS AND MINIKUBE
+minikube start
+---------------------
+C:\Users\Naresh>minikube start
+* minikube v1.36.0 on Microsoft Windows 11 Home Single Language 10.0.26100.4202 Build 26100.4202
+* Using the docker driver based on existing profile
+* Starting "minikube" primary control-plane node in "minikube" cluster
+* Pulling base image v0.0.47 ...
+* Updating the running docker "minikube" container ...
+! Failing to connect to https://registry.k8s.io/ from both inside the minikube container and host machine
+* To pull new external images, you may need to configure a proxy: https://minikube.sigs.k8s.io/docs/reference/networking/proxy/
+* Preparing Kubernetes v1.33.1 on Docker 28.1.1 ...
+* Verifying Kubernetes components...
+  - Using image gcr.io/k8s-minikube/storage-provisioner:v5
+* Enabled addons: default-storageclass, storage-provisioner
+* Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+
+C:\Users\Naresh>minikube ip
+192.168.49.2
+
+C:\Users\Naresh>
+
+C:\Users\Naresh>kubectl get services
+NAME               TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+backend-service    NodePort    10.102.153.180   <none>        5000:32410/TCP   27h
+frontend-service   NodePort    10.103.150.182   <none>        80:30008/TCP     26h
+kubernetes         ClusterIP   10.96.0.1        <none>        443/TCP          29h
+postgres-service   ClusterIP   10.103.80.189    <none>        5432/TCP         27h
+
+C:\Users\Naresh>
+---------------------
+
+kubectl get services
+minikube ip
+kubectl logs backend-6845f99c98-6zwkn
 
 
+-------------------------------
+Microsoft Windows [Version 10.0.26100.4202]
+(c) Microsoft Corporation. All rights reserved.
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\backend>docker build -t gvnaressh/todo-backend:latest .
+[+] Building 7.6s (11/11) FINISHED                                                                 docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.4s
+ => => transferring dockerfile: 204B                                                                               0.2s
+ => [internal] load metadata for docker.io/library/node:18-alpine                                                  5.3s
+ => [auth] library/node:pull token for registry-1.docker.io                                                        0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 96B                                                                                   0.0s
+ => [1/5] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8c  0.1s
+ => => resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8c  0.0s
+ => [internal] load build context                                                                                  0.0s
+ => => transferring context: 195B                                                                                  0.0s
+ => CACHED [2/5] WORKDIR /app                                                                                      0.0s
+ => CACHED [3/5] COPY package*.json ./                                                                             0.0s
+ => CACHED [4/5] RUN npm install --legacy-peer-deps                                                                0.0s
+ => CACHED [5/5] COPY . .                                                                                          0.0s
+ => exporting to image                                                                                             0.7s
+ => => exporting layers                                                                                            0.0s
+ => => exporting manifest sha256:a2705cf4c539cb44cfb49e693cb129d5990c3a3163d70c0808b8f4fa1b4315d3                  0.0s
+ => => exporting config sha256:17a98b0d430d7f47d243f633f2485b91dc344e68f9c2f760b303c90c7939c4e9                    0.0s
+ => => exporting attestation manifest sha256:6bcf07dfc3ba0b23fd67464a99a18469b9519d4701583a451a34a0a938f934f7      0.0s
+ => => exporting manifest list sha256:509a0373e30f4c243f86d49d6fb633891c6b42695d5cadb00ebb124246c894cf             0.0s
+ => => naming to docker.io/gvnaressh/todo-backend:latest                                                           0.0s
+ => => unpacking to docker.io/gvnaressh/todo-backend:latest                                                        0.0s
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\backend>docker push gvnaressh/todo-backend:latest
+The push refers to repository [docker.io/gvnaressh/todo-backend]
+25ff2da83641: Layer already exists
+9d9d7a0f35e4: Pushed
+d14e64f195c0: Layer already exists
+5d63d71c5559: Layer already exists
+80f8470a0532: Layer already exists
+1e5a4c89cee5: Layer already exists
+f18232174bc9: Layer already exists
+89d22a16be43: Layer already exists
+dd71dde834b5: Layer already exists
+latest: digest: sha256:509a0373e30f4c243f86d49d6fb633891c6b42695d5cadb00ebb124246c894cf size: 856
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\backend>kubectl rollout restart deployment backend
+deployment.apps/backend restarted
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\backend>kubectl apply -f k8s/backend-deployment.yaml
+error: the path "k8s/backend-deployment.yaml" does not exist
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp\backend>cd ..
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl apply -f k8s/backend-deployment.yaml
+service/backend-service unchanged
+deployment.apps/backend unchanged
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>kubectl logs deployment/backend
+Found 2 pods, using pod/backend-55fc48fb46-h684r
+✅ Server running at http://0.0.0.0:5000
+
+E:\MURALI\REACT-JS-TRAINING\ADDITIONAL-BACK-END\CICD-Basics-Docker-Kubernates-Jenkins\todoApp>
+-------------------------------
+
+REBUILD FRONTEND
+cd frontend
+docker build -t gvnaressh/todo-frontend:latest .
+docker push gvnaressh/todo-frontend:latest
 
 
+REBUILD FRONTEND
+docker build -t gvnaressh/todo-frontend:latest .
+docker push gvnaressh/todo-frontend:latest
+kubectl rollout restart deployment frontend
+kubectl get pods
 
 
 STEP 5: Finalize Jenkins Pipeline
@@ -869,6 +974,36 @@ Update your Jenkinsfile to include the full automation (as shown earlier).
 
 Run the pipeline from Jenkins → "Build Now".
 
+kubectl run debugpod --image=busybox -it --rm --restart=Never -- wget -qO- backend-service:5000/api/todos
+kubectl run debugpod --image=busybox -it --rm --restart=Never -- wget -qO- backend-service:5000/api/todos
+kubectl run debugpod --image=busybox -it --rm --restart=Never -- wget -qO- backend-service:5000/api/todos
+
+
+kubectl port-forward service/backend-service 5000:5000
+
+Perfect! This confirms that:
+
+✅ Your backend-service is working fine inside the Kubernetes cluster.
+
+✅ The internal DNS (http://backend-service:5000) resolves successfully.
+
+✅ The backend is returning valid data (the list of todos).
+
+Then Why Is the Frontend Failing?
+Since the backend is working inside the cluster, but your React frontend (opened in browser via minikube service frontend-service) is still failing, here’s why:
+
+Your frontend is running in the browser (host machine), but http://backend-service:5000 is not accessible from the host—it's only accessible from inside the Kubernetes cluster.
+
+
+How to Fix This (Two Options)
+✅ Option 1: Use a Kubernetes Ingress or Port Forward
+Expose your backend to the host machine using port-forward:
+
+kubectl port-forward service/backend-service 5000:5000
+Then update .env (for local frontend testing) to:
+
+VITE_API_URL=http://localhost:5000
+This is great for local testing.
 
 
 
@@ -882,6 +1017,22 @@ https://todos-31gl.onrender.com/api/todos
 full flow using Jenkins + Docker + K8s
 full flow using Jenkins + Docker + K8s
 full flow using Jenkins + Docker + K8s
+
+
+C:\Users\Naresh>kubectl get services
+NAME               TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+backend-service    NodePort    10.102.153.180   <none>        5000:32410/TCP   42h
+frontend-service   NodePort    10.103.150.182   <none>        80:30008/TCP     41h
+kubernetes         ClusterIP   10.96.0.1        <none>        443/TCP          44h
+postgres-service   ClusterIP   10.103.80.189    <none>        5432/TCP         42h
+
+C:\Users\Naresh>kubectl run debugpod --image=busybox -it --rm --restart=Never -- wget -qO- backend-service:5000/api/todos
+If you don't see a command prompt, try pressing enter.
+[{"id":5,"title":"test","completed":false},{"id":4,"title":"hello render","completed":true},{"id":3,"title":"go to school and pay fee","completed":false},{"id":2,"title":"get milk and corn","completed":true}]pod "debugpod" deleted
+
+C:\Users\Naresh>
+
+
 
 
 C:\Windows\System32>docker info
