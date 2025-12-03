@@ -1,3 +1,5 @@
+E:\todos - SOURCE CODE
+
 RENDER.COM - BACKEND
 https://todo-backend-u29s.onrender.com/api/todos
 []
@@ -55,12 +57,138 @@ ngrok config add-authtoken 2xROQpo3OSE1XQ1zjteY8nzBpmQ_5HieTkgroxCNHwp8qWmz7
 C:\Users\Naresh>ngrok config add-authtoken 2xROQpo3OSE1XQ1zjteY8nzBpmQ_5HieTkgroxCNHwp8qWmz7
 Authtoken saved to configuration file: C:\Users\Naresh\AppData\Local/ngrok/ngrok.yml
 
-C:\Users\Naresh>
+What is Ngrok?
+
+Ngrok is a tool that creates a secure public URL for your local machine.
+
+IMPORTANT - RUN ngrok http 8080
+SO THAT WE WILL GET THE SECURE PUBLIC URL OF THE LOCAL MACHINE
+WE USE THIS URL TO GET ACCESS TO JENKINS RUNNING IN LOCAL MACHINE 
+AS IN JENKINS 
+Configure --> Github Project
+https://github.com/narresh369/todos.git/
+AND 
+Triggers
+GitHub hook trigger for GITScm polling?
+ARE ENABLED
+
+---------------------------------------------------------------------------
+🎯 What is GitSCM Polling in Jenkins?
+SCM = Source Code Management (like GitHub)
+🟦 GitSCM polling means:
+Jenkins will keep checking GitHub every few minutes to see if any new code is pushed.
+If changes are found → Jenkins will run the pipeline automatically.
+🔁 How it works
+
+Without webhook:
+Jenkins runs git fetch periodically (polling schedule like */5 * * * *) - cron schedule.
+If new commit found → trigger build
+With webhook:
+GitHub directly notifies Jenkins
+No unnecessary checking
+Faster and more efficient 🚀
+
+📌 What does this mean?
+*/5 * * * *
+It means:
+⏱️ Run every 5 minutes
+| Field            | Meaning | Value here              |
+| ---------------- | ------- | ----------------------- |
+| 1️⃣ Minute       | 0–59    | `*/5` → every 5 minutes |
+| 2️⃣ Hour         | 0–23    | `*` → every hour        |
+| 3️⃣ Day of Month | 1–31    | `*` → every day         |
+| 4️⃣ Month        | 1–12    | `*` → every month       |
+| 5️⃣ Day of Week  | 0–6     | `*` → every day of week |
+
+---------------------------------------------------------------------------
+🔁 Two ways Jenkins can detect new code:
+1️⃣ Webhook (Instant Trigger)
+
+✔ When you push to GitHub
+✔ GitHub sends a message to Jenkins immediately via the ngrok public URL
+➡ Jenkins starts the pipeline within 2–5 seconds
+
+This is the best method 🚀
+
+2️⃣ GitSCM Polling (Backup Trigger)
+
+✔ Jenkins checks GitHub every 5 minutes
+✔ Only needed if webhook fails
+---------------------------------------------------------------------------
+🎯 Why do we enable both?
+| Feature                | GitHub Webhook | Poll SCM       |
+| ---------------------- | -------------- | -------------- |
+| Immediate Trigger      | ✅ Yes          | ❌ No           |
+| Backup if webhook down | ❌ No           | ✅ Yes          |
+| Internet required      | Yes            | No (LAN works) |
+
+So using both makes CI/CD more reliable.
+💡 Your current setup
+| Feature             | Status             |
+| ------------------- | ------------------ |
+| GitHub repo         | ✔️ Done            |
+| Jenkins job         | ✔️ Configured      |
+| Webhook to Jenkins  | ✔️ Working         |
+| ngrok public URL    | ✔️ Provides access |
+| Docker Hub push     | ✔️ Configured      |
+| Kubernetes redeploy | ✔️ Setup           |
+
+When you push code → GitHub webhook → ngrok → Jenkins → rebuild + redeploy automatically 🎯
+---------------------------------------------------------------------------
+🔍 How to confirm webhook is triggering Jenkins?
+
+In GitHub Repo:
+➡ Settings → Webhooks → Select your webhook
+➡ Click Recent Deliveries
+
+You should see:
+✓ Response: 200 — OK
+✓ Trigger: push
+✓ Delivered: just now
+
+And in Jenkins console:
+Started by GitHub push event
+---------------------------------------------------------------------------
+🚀 Final Result
+
+Push code to GitHub →
+Jenkins auto builds & deploys →
+Frontend / Backend updates live 🎯
+
+✔ No manual click needed
+✔ No need to open Jenkins manually
+✔ No minikube command needed for live deployment
+---------------------------------------------------------------------------
+We can also add the following:
+
+🔹 Add notification when CI/CD completes
+🔹 Auto deploy frontend to Vercel
+🔹 Auto deploy backend to Render
+🔹 Send Slack/Email alerts for failures
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+
+
+C:\Users\Naresh>ngrok http 8080
+
 
 -----------------------------------------------------------
 Session Status                online                                                                                    Account                       gvnaressh@gmail.com (Plan: Free)                                                          Version                       3.33.1                                                                                    Region                        India (in)                                                                                Latency                       31ms                                                                                      Web Interface                 http://127.0.0.1:4040                                                                     Forwarding                    https://8439ce739878.ngrok-free.app -> http://localhost:8080
 
 -----------------------------------------------------------
+ngrok                                                                                                   (Ctrl+C to quit)                                                                                                                        ⚠️ Free Users: Agents ≤3.18.x stop connecting 12/17/25. Update or upgrade: https://ngrok.com/pricing                                                                                                                                            Session Status                online                                                                                    Account                       gvnaressh@gmail.com (Plan: Free)                                                          Version                       3.33.1                                                                                    Region                        India (in)                                                                                Latency                       39ms                                                                                      Web Interface                 http://127.0.0.1:4040                                                                     Forwarding                    https://0c4a2970005e.ngrok-free.app -> http://localhost:8080                                                                                                                                                      Connections                   ttl     opn     rt1     rt5     p50     p90                                                                             0       0       0.00    0.00    0.00    0.00                                                                                                                            
+-----------------------------------------------------------
+ALWAYS RUN NGROK SO THAT THE SECURE PUBLIC URL OF JENKINS IS AVAILABLE ....APPEND /github-webhook/ TO THE SECURE PUBLIC URL
+
+https://0c4a2970005e.ngrok-free.app
+https://0c4a2970005e.ngrok-free.app/github-webhook/ - 04-12-2025 - LATEST URL
+
+UPDATE THIS URL IN WEB HOOK FOR GITHUB PROJECT UNDER SETTINGS...Payload URL *
+https://0c4a2970005e.ngrok-free.app/github-webhook/
+https://github.com/narresh369/todos.git/
+
+enter password for venkatdada369@gmail
+
 
 to see settings in github login with venkatdada369@gmail.com
 
