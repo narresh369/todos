@@ -66,3 +66,36 @@ to see settings in github login with venkatdada369@gmail.com
 
 https://8439ce739878.ngrok-free.app/github-webhook/
 https://6096-2401-4900-8fcc-5c3-80ff-de02-9d1c-a4e7.ngrok-free.app/github-webhook/
+
+CHAGNE SOME CODE IN APP.JSX IN FRONTEND AND DO THE FOLLOWING
+git add .
+git commit -m "Test Jenkins GitHub Webhook"
+git push origin main
+
+------------------------------
+Microsoft Windows [Version 10.0.26100.6899]
+(c) Microsoft Corporation. All rights reserved.
+
+E:\todos>git add .
+
+E:\todos>git commit -m "Test Jenkins GitHub Webhook"
+[main a596c16] Test Jenkins GitHub Webhook
+ 7 files changed, 172 insertions(+), 33 deletions(-)
+ create mode 100644 Jenkinsfile copy
+ create mode 100644 SCREENS/IMPORTANT LINKS.txt
+ create mode 100644 SCREENS/ngrok-v3-stable-windows-amd64.zip
+ create mode 100644 SCREENS/ngrok-v3-stable-windows-amd64/ngrok.exe
+
+E:\todos>git push origin main
+Enumerating objects: 21, done.
+Counting objects: 100% (21/21), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (13/13), 21.30 MiB | 842.00 KiB/s, done.
+Total 13 (delta 7), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (7/7), completed with 7 local objects.
+To https://github.com/narresh369/todos.git
+   f02ed4f..a596c16  main -> main
+
+E:\todos>
+------------------------------
