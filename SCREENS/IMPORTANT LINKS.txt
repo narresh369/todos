@@ -1,0 +1,68 @@
+RENDER.COM - BACKEND
+https://todo-backend-u29s.onrender.com/api/todos
+[]
+
+
+VERCEL - LIVE DEPLOYED APP
+https://todos-zeta-beryl.vercel.app/
+
+LIVE WORKING URL
+https://todo-backend-u29s.onrender.com/api/todos
+https://todos-31gl.onrender.com/api/todos
+
+
+VITE_API_URL
+https://todos-31gl.onrender.com
+
+DOCKER HUB
+https://hub.docker.com/u/gvnaressh
+
+GITHUB
+https://github.com/narresh369/todos.git
+
+
+Developer Pushes Code → GitHub Webhook → Jenkins
+       ↓
+Build Frontend Image → Push to Docker Hub
+       ↓
+Deploy Frontend to Vercel (Automatic Live Update)
+
+-----------------------------------------------------------
+
+C:\ngrok\ngrok.exe
+
+3️⃣ Add to System PATH (so command works everywhere)
+
+➡ Search Environment Variables
+➡ Click Edit the System Environment Variables
+➡ Click Environment Variables button
+➡ Select Path in System variables
+➡ Click Edit → New
+➡ Add:
+
+C:\ngrok\
+
+C:\Users\Naresh>ngrok version
+ngrok version 3.33.1
+
+https://dashboard.ngrok.com/signup
+gvnaressh@gmail.com
+google login
+
+ngrok config add-authtoken YOUR_TOKEN_HERE
+ngrok config add-authtoken 2xROQpo3OSE1XQ1zjteY8nzBpmQ_5HieTkgroxCNHwp8qWmz7
+
+C:\Users\Naresh>ngrok config add-authtoken 2xROQpo3OSE1XQ1zjteY8nzBpmQ_5HieTkgroxCNHwp8qWmz7
+Authtoken saved to configuration file: C:\Users\Naresh\AppData\Local/ngrok/ngrok.yml
+
+C:\Users\Naresh>
+
+-----------------------------------------------------------
+Session Status                online                                                                                    Account                       gvnaressh@gmail.com (Plan: Free)                                                          Version                       3.33.1                                                                                    Region                        India (in)                                                                                Latency                       31ms                                                                                      Web Interface                 http://127.0.0.1:4040                                                                     Forwarding                    https://8439ce739878.ngrok-free.app -> http://localhost:8080
+
+-----------------------------------------------------------
+
+to see settings in github login with venkatdada369@gmail.com
+
+https://8439ce739878.ngrok-free.app/github-webhook/
+https://6096-2401-4900-8fcc-5c3-80ff-de02-9d1c-a4e7.ngrok-free.app/github-webhook/

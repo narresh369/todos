@@ -29,6 +29,6 @@ spec:
           image: gvnaressh/todo-backend:latest
           env:
             - name: DATABASE_URL
-              value: "postgresql://postgresql_user:GsDsXXIECaHl6oOiWNKMIPKIxGCkRpay@dpg-d178cbndiees73dtodng-a.oregon-postgres.render.com/postgresql_crud_db"
+              value: "postgresql://pernsss_store_user:re4rSmMlmbqlZF2HY2d8yJZJa1i9v6C5@dpg-d4bae9odl3ps739932hg-a.singapore-postgres.render.com/pernssss_store?sslmode=require"
           ports:
             - containerPort: 5000
