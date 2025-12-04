@@ -45,8 +45,8 @@ function App() {
 
   return (
     <div className="app-container">
-      <div className="todo-card" style={{ background: "red" }}>
-        <h1>📝 Todo App - Updated for Jenkins - 04-12-2025-HELLO Everyone</h1>
+      <div className="todo-card" style={{ background: "yellow" }}>
+        <h1>📝 Todo App - Updated for Jenkins - 04-12-2025-HELLO Once again!</h1>
         <div className="input-group">
           <input
             type="text"
