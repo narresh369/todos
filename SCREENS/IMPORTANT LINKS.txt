@@ -199,6 +199,10 @@ CHAGNE SOME CODE IN APP.JSX IN FRONTEND AND DO THE FOLLOWING
 git add .
 git commit -m "Test Jenkins GitHub Webhook"
 git push origin main
+------------------------------
+git add .
+git commit -m "Test Jenkins GitHub Webhook 04-12-2025"
+git push origin main
 
 ------------------------------
 Microsoft Windows [Version 10.0.26100.6899]
@@ -227,3 +231,68 @@ To https://github.com/narresh369/todos.git
 
 E:\todos>
 ------------------------------
+
+🚀 CI/CD Deployment Architecture — React + Node.js + Docker + Jenkins + Minikube + Vercel + Render
+ ┌──────────────────┐
+ │   Developer       │
+ │  (Writes Code)    │
+ └───────┬──────────┘
+         │ Push Code
+         ▼
+ ┌──────────────────┐     GitHub Webhook Triggers Build
+ │     GitHub        │───────────────┐
+ └───────┬──────────┘               │
+         │                           │
+         ▼                           ▼
+ ┌──────────────────────────┐   ❗ ngrok provides public
+ │        Jenkins CI/CD     │◀──   webhook URL to GitHub
+ │ (Build + Test + Automate)│
+ └───────┬──────────┬──────┘
+         │           │
+   Build Docker   Update K8s
+   Images (FE+BE) Resources in Minikube
+         │           │
+         ▼           ▼
+ ┌──────────────────────────┐
+ │     Docker Desktop       │
+ │ Local Docker Registry    │
+ └───────┬─────────────────┘
+         │ Push Images
+         ▼
+ ┌──────────────────────────┐
+ │       Docker Hub         │
+ │ (Image Repository)       │
+ └───────┬──────────┬──────┘
+         │           │
+Deploy FE updates   Deploy BE updates
+by pulling image    by pulling image
+         │           │
+         ▼           ▼
+ ┌──────────────────┐ ┌────────────────────┐
+ │     Vercel        │ │     Render.com     │
+ │ (Hosts Frontend) │ │ (Hosts Backend +   │
+ └───────┬──────────┘ │  PostgreSQL DB)    │
+         │            └──────────┬─────────┘
+         │ API Requests          │
+         ▼                       ▼
+     End Users  <────── Data / API ───────→ Backend + DB
+
+✔ What happens automatically?
+
+| Action                           | Trigger                | What Happens                        |
+| -------------------------------- | ---------------------- | ----------------------------------- |
+| Developer pushes code            | GitHub Webhook         | Jenkins CI/CD pipeline starts       |
+| Jenkins builds new Docker images | Pipeline step          | Images pushed to Docker Hub         |
+| Deployment updated               | Auto or manual rollout | Vercel / Render fetch latest images |
+
+🔥 Technologies Involved
+
+| Layer                      | Tool           |
+| -------------------------- | -------------- |
+| Source control             | GitHub         |
+| CI/CD                      | Jenkins        |
+| Local Kubernetes           | Minikube       |
+| Containers                 | Docker Desktop |
+| Image registry             | Docker Hub     |
+| Frontend hosting           | Vercel         |
+| Backend & Database hosting | Render.com     |
